@@ -1,0 +1,421 @@
+/* SAFEDRIVING DIRECTION   
+----------------------------------------------------------*/
+
+body
+{
+    background-color: #bfbfbf;
+    margin: auto;
+    font-family: Century Gothic;
+    color: Black;
+    width: 1000px;
+}
+
+#header
+{
+    background-color: White;
+    width: 1000px;
+    height: 300px;
+}
+
+#bande
+{
+    width: 1000px;
+    height: 193px;
+    background-image: url(themes/base/images/header/BandeHeader.png);
+    background-repeat: no-repeat;
+}
+
+#logon
+{
+    float: left;
+    margin-top: 25px;
+    height: 170px;
+    width: 200px;
+    background-color: transparent;
+}
+
+#menu
+{
+    font-size: 15px;
+    background-image: url(themes/base/images/header/BackMenu.png);
+    background-repeat: no-repeat;
+    width: 1000px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+li
+{
+    margin: auto;
+}
+
+#log-partial
+{
+    border: none;
+}
+
+#page
+{
+    width: 1000px;
+    background-color: White;
+}
+
+#footer
+{
+    width: 1000px;
+    height: 20px;
+    background-color: #cecece;
+    color: white;
+    font-size: 14px;
+}
+
+#deco
+{
+    font-size: 13px;
+    text-decoration:underline;
+}
+/* FORMS FIELD-LABEL-BUTTON
+----------------------------------------------------------*/
+fieldset
+{
+    border-width: 0px;
+    margin: auto;
+}
+
+.editor-label-login
+{
+    color: #6c6c6c;
+    font-size: 12px;
+    text-align: left;
+}
+
+.editor-field-login
+{
+    width: 150px;
+    height: 18px;
+    font-size: 15px;
+    font-weight: lighter;
+    color: #8d94cd;
+    margin-bottom: 5px;
+    background-color: white;
+    border-width: 0px;
+}
+
+.editor-field
+{
+    background-color: #ECECEC;
+    height: 18px;
+    font-size: 15px;
+    color: #8d94cd;
+    border-width: 0px;
+    margin-left: 20px;
+    border-width: 0px;
+}
+
+.editor-field-long
+{
+    background-color: #ECECEC;
+    height: 18px;
+    font-size: 15px;
+    color: #8d94cd;
+    border-width: 0px;
+    margin-left: 20px;
+    border-width: 0px;
+    width: 250px;
+}
+
+.editor-field-short
+{
+    background-color: #ECECEC;
+    height: 18px;
+    font-size: 15px;
+    color: #8d94cd;
+    border-width: 0px;
+    margin-left: 20px;
+    border-width: 0px;
+    width: 100px;
+}
+.editor-textarea
+{
+    background-color: #ECECEC;
+    width: 550px;
+    height: 350px;
+    color: #8d94cd;
+    border: none;
+    margin-left: 20px;
+}
+
+select
+{
+    color: #8d94cd;
+    background-color: #ECECEC;
+    border-width: 0px;
+    margin-left: 20px;
+}
+
+
+.editor-label
+{
+    color: #dcdcdc;
+    font-size: 18px;
+    text-align: left;
+}
+.buttonValidate
+{
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url(themes/base/images/header/Validate.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-add
+{
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 15px;
+    width: 43px;
+    height: 43px;
+    border: none;
+    background-image: url(themes/base/images/Icon/plus.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-edit
+{
+    margin: auto;
+    width: 48px;
+    height: 48px;
+    border: none;
+    background-image: url(themes/base/images/Icon/edit.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-right
+{
+    margin-left: 700px;
+}
+.return
+{
+    width: 51px;
+    height: 42px;
+    background-image: url(themes/base/images/Icon/return.png);
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+#button-validate-position-login
+{
+    float: right;
+}
+
+.table-forms
+{
+    border-spacing: 5px;
+}
+
+.buttonSubmit
+{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(themes/base/images/Icon/checkBig.png);
+    background-repeat: no-repeat;
+    width: 38px;
+    height: 38px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.printButton
+{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(themes/base/images/Icon/print.png);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+    float:right;
+}
+.searchButton
+{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url(themes/base/images/Icon/search.png);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.ValidationMessage
+{
+    color: #8d94cd;
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+
+/* TITLES
+----------------------------------------------------------*/
+.Subtitle
+{
+    position: relative;
+    margin-left: 10px;
+    margin-top:5px;
+    margin-bottom: 30px;
+}
+
+.LittleSubtitle
+{
+    position: relative;
+    margin-left: 10px;
+    height: 75px;
+    width: 300px;
+}
+
+.FrontTitle
+{
+    color: #8d94cd;
+    font-size: 55px;
+    position: relative;
+}
+
+.ShadowTitle
+{
+    margin-left: 5px;
+    color: #f8f8fb;
+    font-size: 80px;
+    position: absolute;
+}
+
+.FrontLittleTitle
+{
+    color: #8d94cd;
+    font-size: 35px;
+    position: relative;
+}
+
+.ShadowLittleTitle
+{
+    margin-left: 5px;
+    color: #f8f8fb;
+    font-size: 60px;
+    position: absolute;
+}
+
+.ShadowTitleWhite
+{
+    margin-left: 5px;
+    color: #F8F8F8;
+    font-size: 80px;
+    position: absolute;
+}
+
+.FrontTitleWhite
+{
+    color: white;
+    font-size: 55px;
+    position: relative;
+}
+
+/* CLASS Design
+-----------------------------------------------------------*/
+.shadow
+{
+    -moz-box-shadow: 0 0 5px #bfbfbf;
+    -webkit-box-shadow: 0 0 5px#bfbfbf;
+    box-shadow: 0 0 5px #bfbfbf;
+}
+
+.text
+{
+    text-align: justify;
+}
+
+
+/* MENU
+-----------------------------------------------------------*/
+
+#menu
+{
+    margin: 0;
+    padding: 0;
+    color: #bfbfbf;
+}
+
+#menu li
+{
+    float: left;
+    list-style: none; /*font: 12px Tahoma, Arial La taille et la police du texte du menu*/
+}
+
+#menu li a
+{
+    display: block; /*background: #20548E;  Couleur de fond des titres du menu (bleu foncé) */
+    padding: 5px 12px;
+    text-decoration: none;
+    border-right: 1px solid white;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+    margin: auto;
+    color: #bfbfbf;
+    white-space: nowrap;
+}
+
+#menu li a:hover
+{
+    /*background: #f8f8f8;*/
+}
+/* Couleur de fond des titres du menu au survol de la souris (bleu encore plus foncé) */
+
+#menu li ul
+{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    border-top: 1px solid white;
+}
+
+#menu li ul li
+{
+    float: none;
+    display: inline;
+}
+
+#menu li ul li a
+{
+    width: auto; /*background: #9F1B1B Couleur de fond des items déroulant du menu (rouge bordeaux) */
+}
+
+#menu a:hover
+{
+    color: #949494; /*background: #7F1616;   Couleur de fond des items déroulant du menu au survol de la souris(rouge bordeaux encore plus foncé) */
+}
+
+#menu a:link
+{
+    color: #bfbfbf;
+}
+
+#menu a
+{
+    color: #bfbfbf;
+}
+
+

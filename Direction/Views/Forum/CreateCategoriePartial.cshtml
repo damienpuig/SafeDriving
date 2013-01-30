@@ -1,0 +1,39 @@
+﻿@model IList<Direction.Models.CategorieViewModels.CategorieViewModel>
+
+<script type="text/javascript" language="javascript">
+
+    function ShowEditCategoriePartial() {
+        $.ajax(
+         {
+             type: "POST",
+             url: '@Url.Action("EditPartial", "Forum")',
+             data: $('form').serialize(),
+             success: function (data) {
+                 if (data.toString() == "[object Object]") {
+                     $("#CreateCategorie").hide();
+                     $("#CommitCategorie").show();
+                 }
+                 else {
+                 }
+             }
+         });
+    }
+
+</script>
+
+    <span id="CreateTopic">
+    
+        <input  value="" name="Edit" class="button-add" onclick="javascript:ShowEditCategoriePartial()"  />
+        <label class="editor-label">
+                        Créer une nouvelle catégorie</label>
+    </span>
+    
+    @using (Html.BeginForm("Index", "Forum", FormMethod.Post))
+    {
+           <div id="CommitCategorie" style="display:none">
+           <span style="margin-left:10px;"><label class="editor-label">
+                        Titre de la catégorie: </label>@Html.TextBoxFor(x => x[0].TitreNewCategorie, new { @class = "editor-field field-width" })<input type="submit" value="" name="Edit" class="buttonSubmit" /></span>
+                
+            </div>
+    }
+

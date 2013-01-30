@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Master.css")" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/ico" href="@Url.Content("~/Content/themes/base/images/favicon.ico")">
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="../../Scripts/jquery-ui-1.8.10.custom.min.js" type="text/javascript"></script>
+    <link href="../../Content/datatable.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Autocomplete.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Uppercase.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Button.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/CheckBoxList.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Date.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Fieldset.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Global.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Grid.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Popup.js" type="text/javascript"></script>
+    <script src="../../Scripts/genapi.framework.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        var gaFrk = new GenapiFrameworkClass();
+
+        $(document).ready(
+		 function () {
+
+		     var gaFrk = new GenapiFrameworkClass();
+		     gaFrk.init();
+		 });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(
+		 function () {
+
+		     var timeout = 500;
+		     var closetimer = 0;
+		     var ddmenuitem = 0;
+
+		     function MenuDeroulant_open() {
+		         MenuDeroulant_canceltimer();
+		         MenuDeroulant_close();
+		         ddmenuitem = $(this).find('ul').css('visibility', 'visible');
+		     }
+
+		     function MenuDeroulant_close() {
+		         if (ddmenuitem) ddmenuitem.css('visibility', 'hidden');
+		     }
+
+		     function MenuDeroulant_timer() {
+		         closetimer = window.setTimeout(MenuDeroulant_close, timeout);
+		     }
+
+		     function MenuDeroulant_canceltimer() {
+		         if (closetimer) {
+		             window.clearTimeout(closetimer);
+		             closetimer = null;
+		         }
+		     }
+
+		     $(document).ready(function () {
+		         $('#menu > li').bind('mouseover', MenuDeroulant_open)
+		         $('#menu > li').bind('mouseout', MenuDeroulant_timer)
+		     });
+
+		     document.onclick = MenuDeroulant_close;
+
+		 });
+
+    </script>
+    </script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div id="bande">
+				<div id="logon">
+					@Html.Partial("_LogOnPartial", new ViewDataDictionary())
+				</div>
+			</div>
+			<div id="menu">
+			@if (Request.IsAuthenticated)
+			{
+				<li><a href="@Url.Action("Index", "Home")">Accueil</a></li>
+					<li><a href="@Url.Action("Index", "Articles")">Article</a></li>
+					<li><a href="">Eleves</a>
+						<ul>
+							<li><a href="@Url.Action("Consulter", "Client")">Consulter</a></li>
+							<li><a href="@Url.Action("Inscrire", "Client")">Inscrire</a></li>
+							<li><a href="@Url.Action("Migration", "Client")">Migrer</a></li>
+						</ul>
+					</li>
+					<li><a href="">Employes</a>
+						<ul>
+							<li><a href="@Url.Action("Consulter", "Employe")">Consulter</a></li>
+							<li><a href="@Url.Action("Inscrire", "Employe")">Inscrire</a></li>
+						</ul>
+					</li>
+					<li><a href="@Url.Action("Index", "Planning")">Planning</a></li>
+					<li><a href="@Url.Action("Index", "Examen")">Examen</a></li>
+					<li><a href="@Url.Action("Index", "Forum")">Forum</a></li>
+			}
+			else
+			{
+				<li><a href="@Url.Action("Index", "Home")">Accueil</a></li>
+			}
+					
+			</div>
+		</div>
+		<div id="content">
+			@RenderBody()
+		</div>
+		<div id="footer">
+			© Copyright 2011 - BesTeam Development
+		</div>
+		<div id="PopupHidden" style="display:none"></div>
+	</div>
+</body>
+</html>

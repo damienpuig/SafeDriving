@@ -1,0 +1,129 @@
+﻿<link href="@Url.Content("~/Content/Forum.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link href="../../Content/themes/base/images/DatePicker/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+@model IList<SafeDriving.Models.CategorieViewModels.CategorieViewModel>
+@{
+    ViewBag.Title = "Forum";
+}
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#categories").accordion();
+    });
+
+
+</script>
+
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Forum</div>
+    <div class="FrontTitle">
+        Forum</div>
+</div>
+<br />
+<br />
+
+@* Si l'utilisateur est connecté, il a accés qu lien pour entrer dans les Topic *@
+@if (Request.IsAuthenticated)
+{                     
+    <div id="CreateTopicPart">
+       @Html.Partial("CreateTopicPartial")
+    </div>
+    
+   @* using (Html.BeginForm("Categorie","Forum",FormMethod.Post))
+    {
+     <div>
+        @Html.Partial("CreateCategoriePartial")
+    </div>   
+    }*@
+    
+    <table class="table-txt-title">
+    <tr>
+        <td class="colonnes">
+            Catégories
+        </td>
+        <td class="colonnes">
+            Topics
+        </td>
+        <td class="colonnes">
+            Créateurs
+        </td>
+    </tr>
+    </table>
+    
+    <div id="categories">
+        @foreach (var categorie in Model)
+        { 
+            <div id="categorieImage">
+                <table class="table-txt">
+                    <tr>
+                        <td class="colonnes">@categorie.Nom
+                        </td>
+                        <td class="colonnes">@categorie.ListeTopic.Count.ToString()
+                        </td>
+                        <td class="colonnes">@categorie.NomCreateur
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                @foreach (var top in categorie.ListeTopic)
+                {
+                    <div class="topic-content">
+                        @Html.Label("Sujet : ")
+                        <a href="@Url.Action("Topic", "Forum", new { id = top.Id })">@top.Nom </a>
+                        <br />
+                    </div>
+                }
+                
+            </div>  
+        }
+    </div>
+}
+@* Sinon, il peut voir les catégories et les Topic, mais pas entrer dans les Topic, on lui propose donc de s'inscrire *@
+else
+{
+    <br />
+    <br />
+    @Html.Label("Vous n'etes pas connecté actuellement, connectez-vous ou inscrivez-vous pour avoir accès au contenue du forum")
+    <br />
+    <br />
+    <table class="table-txt-title">
+        <tr>
+            <td class="colonnes">
+                Categorie
+            </td>
+        </tr>
+    </table>
+    <div id="categories">
+        @foreach (var categorie in Model)
+        {               
+            <div id="categorieImage">
+                <table class="table-txt">
+                    <tr>
+                        <td class="colonnes">@categorie.Nom
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                @foreach (var top in categorie.ListeTopic)
+                {
+                    <div class="topic-content">
+                        @Html.Label("Sujet: ")
+                        @top.Nom
+                        <br />
+                    </div>
+                }
+                @* /!\ tu es dans la partie visiteur ici. C*@
+                @*<div id="CreateCategoriePartial">
+                    @Html.Partial("CreateCategoriePartial")
+                </div>*@
+            </div>  
+        }
+    </div>
+}

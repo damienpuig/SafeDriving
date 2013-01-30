@@ -1,0 +1,30 @@
+﻿table
+{
+    margin: auto;
+    text-align: center;
+}
+#tarifTable
+{
+    margin-top: 50px;
+    margin-left: auto;
+}
+
+#downloadLinkDiv
+{
+    margin-top: 50px;
+    color: Gray;
+    cursor:pointer;
+}
+
+#logoPdf
+{
+    margin-top: auto;
+}
+
+#downloadLink a
+{
+    text-decoration:none;
+    color:#bfbfbf;
+    font-size:15px;
+    cursor:pointer;
+}

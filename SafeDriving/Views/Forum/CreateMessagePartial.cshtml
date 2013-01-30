@@ -1,0 +1,35 @@
+﻿@model SafeDriving.Models.TopicViewModels.TopicViewModel
+
+<script type="text/javascript" language="javascript">
+    
+    function ShowEditPartial() {
+        $.ajax(
+         {
+             type: "POST",
+             url: '@Url.Action("EditPartial", "Forum")',
+             data: $('form').serialize(),
+             success: function (data) {
+                 if (data.toString() == "[object Object]") {
+                     $("#CreateMessage").hide();
+                     $("#CommitMessage").show();
+                 }
+                 else {
+                 }
+             }
+         });
+     }
+
+</script>
+
+    <div id="CreateMessage" style="display:inline">
+    <span class="button">Répondre <input type="submit" value="" name="Edit" class="button-edit" onclick="javascript:ShowEditPartial()"  /></span>
+    </div>
+    
+    @using (Html.BeginForm("Topic", "Forum", FormMethod.Post))
+    {
+           <div id="CommitMessage" style="display:none">
+                @Html.TextAreaFor(x => x.MessageNewTopic, new {@class = "teaxtarea-forum"})
+                <span class="button" >Valider <input type="submit" value="" name="Edit" class="buttonValidate" style="margin-left: 5px;"/></span>
+            </div>
+    }
+ 

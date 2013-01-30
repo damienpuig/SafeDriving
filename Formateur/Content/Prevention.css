@@ -1,0 +1,26 @@
+﻿
+
+#preventionTable
+{
+    margin-top:50px;
+    font-size: 15px;
+    width: 900px;
+    height:400px;
+   text-align:justify;
+}
+
+#text
+{
+padding-left :20px; 
+}
+
+#centerCol
+{
+width:30px;
+}
+
+table
+{
+    margin: auto;
+    text-align: center;
+}

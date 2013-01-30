@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Master.css")" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/ico" href="@Url.Content("~/Content/themes/base/images/favicon.ico")">
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <link href="../../Content/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/GenapiControls/Autocomplete.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Uppercase.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Button.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/CheckBoxList.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Date.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Fieldset.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Global.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Grid.js" type="text/javascript"></script>
+    <script src="../../Scripts/GenapiControls/Popup.js" type="text/javascript"></script>
+    <script src="../../Scripts/genapi.framework.js" type="text/javascript"></script>
+        <script language="javascript" type="text/javascript">
+            var gaFrk = new GenapiFrameworkClass();
+
+            $(document).ready(
+		 function () {
+
+		     var gaFrk = new GenapiFrameworkClass();
+		     gaFrk.init();
+		 });
+    </script>
+</head>
+<body>
+    <div>
+        <div id="page">
+            <div id="header">
+                <div id="headerContent">
+                    <div id="bandeau">
+                        <div id="login">
+                            @Html.Partial("_LogOnPartial", new ViewDataDictionary())
+                        </div>
+                        <div id="bandeBlanche">
+                            <div id="title">
+                                <a id="atitle" href="@Url.Action("Index", "Home")">Formateur</a>
+                            </div>
+                        </div>
+                        @Html.Partial("_Menu")
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link href="../../Content/themes/base/images/DatePicker/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>

@@ -1,0 +1,372 @@
+﻿/* SAFEDRIVING FORMATEUR   
+----------------------------------------------------------*/
+body
+{
+    background-color: #bfbfbf;
+    margin: auto;
+    font-family: Century Gothic;
+    color: Black;
+    width: 1000px;
+}
+
+/* HEADER   
+----------------------------------------------------------*/
+
+#page
+{
+    background-color: White;
+}
+
+#header
+{
+    -moz-box-shadow: 0 0 7px #888;
+    -webkit-box-shadow: 0 0 7px#888;
+    box-shadow: 0 0 7px #888;
+    width: auto;
+    height: 400px;
+    background-image: url(themes/base/images/Header/Hroute.jpg);
+    background-repeat: no-repeat;
+}
+
+#headerContent
+{
+    padding-top: 80px;
+}
+
+#bandeau
+{
+    height: 160px;
+    width: 1000px;
+}
+
+#login
+{
+    float: left;
+    height: 170px;
+    width: 180px;
+    background-color: White;
+    padding-right: 5px;
+    -moz-box-shadow: 0 0 7px #888;
+    -webkit-box-shadow: 0 0 7px#888;
+    box-shadow: 0 0 7px #888;
+    padding-top: 1px;
+}
+
+
+#bandeBlanche
+{
+    padding-left: 170px;
+    padding-top: 50px;
+    height: 160px;
+    width: 827px;
+    margin-left: 173px;
+    background-image: url(themes/base/images/Header/BandeauBlanc.png);
+    background-repeat: no-repeat;
+}
+
+#menu
+{
+    height: 85px;
+    width: 1000px;
+    font-size: 18px;
+
+}
+
+#table-menu
+{
+    margin: auto;
+    text-align: center;
+}
+
+#imagePresentation
+{
+    margin:auto;
+    text-align:center;
+}
+#menu td
+{
+    width: 140px;
+    margin: auto;
+    border: none;
+}
+
+#titleTable td
+{
+    height: 10px;
+    text-align: center;
+}
+
+#imageTable
+{
+    height: 70px;
+    border-style: none;
+}
+
+
+/* LogOnPartial   
+----------------------------------------------------------*/
+
+
+#submitButton
+{
+    float: right;
+    cursor: pointer;
+}
+
+#Validate
+{
+    margin-left: 15px;
+}
+
+#Validate a
+{
+    font-size: 13px;
+    text-decoration: underline;
+    color: #bfbfbf;
+    cursor: pointer;
+}
+
+#Profil
+{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#deco
+{
+    margin-top: 10px;
+    font-size: 12px;
+    color: Black;
+    float: right;
+}
+#name-user
+{
+    font-size: 15px;
+    color: #bfbfbf;
+}
+
+#Profil img
+{
+    height: 110px;
+    max-width: 150px;
+}
+
+
+.buttonValidate
+{
+    width: 33px;
+    height: 33px;
+    border: none;
+    background-image: url(themes/base/images/Header/Validate.png);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-add
+{
+    margin: auto;
+    margin-left:20px;
+    margin-right:15px;
+    width: 43px;
+    height: 43px;
+    border: none;
+    background-image: url(themes/base/images/Icon/plus.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-edit
+{
+    margin: auto;
+    width: 48px;
+    height: 48px;
+    border: none;
+    background-image: url(themes/base/images/Icon/IconEdit.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* GENERALS   
+----------------------------------------------------------*/
+#atitle
+{
+    color: #7FD4FF;
+    font-weight: lighter;
+    font-size: 45px;
+    text-decoration: none;
+}
+
+#menu a
+{
+    text-decoration: none;
+    color: #bfbfbf;
+    font-size: 18px;
+}
+
+a
+{
+    cursor: pointer;
+}
+
+.checkBox
+{
+    border: none;
+    background-color: transparent;
+    background-image: url(themes/base/images/Header/CheckB.png);
+}
+
+#return
+{
+    width: 51px;
+    height: 42px;
+    background-image: url(themes/base/images/Icon/return.png);
+    float: left;
+    margin-left: 25px;
+}
+/* Correction IE   
+----------------------------------------------------------*/
+/*Border des images*/
+img
+{
+    border-width: 0px;
+}
+
+
+/* MAIN   
+----------------------------------------------------------*/
+#main
+{
+    background-color: White;
+    height: auto;
+    padding-bottom: 50px;
+}
+
+#Subtitle
+{
+    margin-left: 25px;
+    font-family: Century Gothic;
+    font-weight: lighter;
+    display: inline-block;
+    margin-bottom:25px;
+}
+
+#FrontTitle
+{
+    color: #7FD4FF;
+    font-size: 55px;
+    position: relative;
+}
+
+#ShadowTitle
+{
+    margin-left: 5px;
+    color: #ECF9FF;
+    font-size: 80px;
+    position: absolute;
+}
+
+/* FOOTER   
+----------------------------------------------------------*/
+
+#footer
+{
+    width: 1000px;
+    height: 133px;
+    background-image: url(/Content/themes/base/images/Footer/footer.png);
+    -moz-box-shadow: 0 0 7px #888;
+    -webkit-box-shadow: 0 0 7px#888;
+    box-shadow: 0 0 7px #888;
+    background-color: White;
+}
+
+#actu
+{
+    color: Fuchsia;
+}
+
+/* Forms   
+----------------------------------------------------------*/
+
+
+.editor-label
+{
+    font-size: 15px;
+    color: #bfbfbf;
+    text-align: left;
+}
+
+.editor-field
+{
+    margin-left: 20px;
+    width: 150px;
+    height: 23px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #7FD4FF;
+    background-color: #ececec;
+    border-width: 0px;
+}
+
+.label-info-perso
+{
+    font-size: 15px;
+    color: #7FD4FF;
+    text-align: left;
+}
+
+.editor-field-login
+{
+    width: 150px;
+    height: 20px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #7FD4FF;
+    margin-bottom: 10px;
+    background-color: #ececec;
+    border-width: 0px;
+}
+
+.ValidationMessage
+{
+    color: #7FD4FF;
+    font-size: 12px;
+    margin-left:20px;
+}
+.editor-field-long
+{
+    margin-left: 20px;
+    width: 250px;
+    height: 23px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #7FD4FF;
+    background-color: #ececec;
+    border-width: 0px;
+}
+
+.editor-field-short
+{
+    margin-left: 20px;
+    width: 100px;
+    height: 23px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #7FD4FF;
+    border-width: 0px;
+    background-color: #ececec;
+}
+.editor-CheckBox
+{
+    font-size: 13px;
+    color: #bfbfbf;
+    height: 5px;
+}
+
+fieldset
+{
+    border-width: 0px;
+    text-align: left;
+}

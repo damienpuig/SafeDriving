@@ -1,0 +1,47 @@
+﻿@model IList<SafeDriving.Models.ArticleViewModels.ArticleViewModel>
+@{
+    ViewBag.Title = "Prevention";
+}
+
+<head>
+<link href="@Url.Content("~/Content/Actus.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Prévention</div>
+    <div class="FrontTitle">
+        Prévention</div>
+</div>
+@using (Html.BeginForm("Detail", "Prevention", FormMethod.Post))
+{
+
+
+    <div>
+        @foreach (var item in Model)
+        {
+            <div id="actu-item">
+                <table id="actu-table">
+                    <tr>
+                        <td id="actu-td-image">
+                            <img alt="Image Actualité" src="../../Content/themes/base/images/Content/prevention/image.png" />
+                        </td>
+                        <td id="actu-td-text">
+                            <a id="actu-title" href="@Url.Action("Detail", "Prevention", new { id = item.Id })">
+                                @item.Titre
+                            </a>
+                            <div id="line"></div>
+                            <div id="actu-date">
+                                @item.Date
+                            </div>
+                            <div id="actu-content">
+                                @item.Contenu
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+        }
+    </div>
+}

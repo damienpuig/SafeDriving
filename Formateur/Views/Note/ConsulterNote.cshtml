@@ -1,0 +1,28 @@
+﻿@using Formateur.Helpers
+@model IList<Formateur.Models.AccountViewModels.ClientCustomViewModel>
+
+@{
+	ViewBag.Title = "Noter l'eleve !";
+}
+
+<link href="../../Content/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
+
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Noter L'eleve</div>
+    <div class="FrontTitle">
+        Noter L'eleve</div>
+</div>
+<div id="table-position">
+@{
+	var table = Html.TableFor(Model,"grid")
+		.AddColumns(m=>m.Prenom,"Prenom")
+		.AddColumns(p=>p.Nom,"Nom")
+		.AddColumns(p=>p.NamedSession,"Nom de la session")
+        .AddColumns(p=> p.Date,"Date")
+		.AddActionPopupLink("Notation","Noter",m=>Html.ActionLink("Noter !","NotePopupClient","Note",new {id = m.IdHistoriqueSession},new {title="Noter l'élève"}))
+		.Render()
+		;
+	}
+@table
+</div>

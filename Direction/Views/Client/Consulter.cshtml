@@ -1,0 +1,27 @@
+﻿@using Direction.Helpers
+@model IList<Direction.Models.AccountViewModels.ClientViewModel>
+
+@{
+	ViewBag.Title = "Consulter";
+}
+
+<link href="../../Content/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
+
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Consulter</div>
+    <div class="FrontTitle">
+        Consulter</div>
+</div>
+<div id="table-position">
+@{
+	var table = Html.TableFor(Model,"grid")
+		.AddColumns(m=>m.Prenom,"prenom")
+		.AddColumns(p=>p.Nom,"nom")
+		.AddColumns(p=>p.Pseudo,"pseudo")
+		.AddActionPopupLink("Consultation","consulter",m=>Html.ActionLink("Consulter","CreatePopupClient","Client",new {id = m.Id},new {title="Détail du client"}))
+		.Render()
+		;
+	}
+@table
+</div>

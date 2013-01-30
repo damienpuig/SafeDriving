@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Master.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        <div id="page">
+            <div id="header">
+                <div id="headerContent">
+                    <div id="bandeau">
+                        <div id="login">
+                            @Html.Partial("_LogOnPartial", new ViewDataDictionary())
+                        </div>
+                        <div id="bandeBlanche">
+                            <div id="title">
+                                <a id="atitle" href="@Url.Action("Index", "Home")">Safe Driving</a>
+                            </div>
+                        </div>
+                        @Html.Partial("_Menu")
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>
+

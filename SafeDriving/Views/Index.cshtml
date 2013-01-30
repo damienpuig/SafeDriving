@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Formation";
+}
+<link href="@Url.Content("~/Content/formation.css")" rel="stylesheet" type="text/css" />
+<div class="Subtitle">
+<div class="ShadowTitle">Formation</div>
+<div class="FrontTitle">Formation</div>
+</div>
+
+<table id="tarifTable">
+<tr>
+<td id="auto">
+    <img src="../../Content/themes/base/images/Content/Formation/forfaitauto.jpg" /></td>
+<td id="bsr">
+    <img src="../../Content/themes/base/images/Content/Formation/BSR.jpg" /></td>
+<td id="code">
+    <img src="../../Content/themes/base/images/Content/Formation/code.jpg" style="display:block;" />
+    <img src="../../Content/themes/base/images/Content/Formation/MOTO.jpg" />
+    </td>
+</tr>
+</table>
+
+<div id="downloadLink">
+<table>
+<tr>
+<td>
+@Html.ActionLink("télécharger les tarifs au format pdf", "Download", "Formation", new { target = "_blank" })</td>
+<td><img src="../../Content/themes/base/images/Content/Formation/pdfIcon.png" id="logoPdf" /></td>
+</tr>
+</table>
+</div>
+

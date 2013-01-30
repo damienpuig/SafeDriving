@@ -1,0 +1,438 @@
+﻿@model Direction.Models.PlanningViewModels.PlanningViewModel
+
+@{
+	ViewBag.Title = "Planning";
+}
+
+	<link href="../../Content/calendar/libs/css/smoothness/jquery-ui-1.8.11.custom.css" rel="stylesheet" type="text/css" />
+	<link href="../../Content/calendar/jquery.weekcalendar.css" rel="stylesheet" type="text/css" />
+	<script src="../../Content/calendar/libs/jquery-1.4.4.min.js" type="text/javascript"></script>
+	<script src="../../Content/calendar/libs/jquery-ui-1.8.11.custom.min.js" type="text/javascript"></script>
+	<script src="../../Content/calendar/libs/jquery-ui-i18n.js" type="text/javascript"></script>
+	<script src="../../Content/calendar/libs/date.js" type="text/javascript"></script>
+	<script src="../../Content/calendar/jquery.weekcalendar.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+	var year = new Date().getFullYear();
+	var month = new Date().getMonth();
+	var day = new Date().getDate();
+
+	$(document).ready(function () {
+	    var $calendar = $('#calendar');
+	    var id = 10;
+
+	    $('#calendar').weekCalendar({
+	        displayOddEven: true,
+	        timeslotsPerHour: 1,
+	        use24Hour: true,
+	        allowCalEventOverlap: true,
+	        overlapEventsSeparate: true,
+	        firstDayOfWeek: 1,
+	        businessHours: { start: 8, end: 18, limitDisplay: true },
+	        daysToShow: 7,
+	        switchDisplay: { '1 jour': 1, '3 dernier jours': 3, 'semaine de travail': 5, 'semaine entière': 7 },
+	        title: function (daysToShow) {
+	            return daysToShow == 1 ? '%date%' : '%start% - %end%';
+	        },
+	        height: function ($calendar) {
+	            return $(window).height() - $("h1").outerHeight(true);
+	        },
+	        eventRender: function (calEvent, $event) {
+	            if (calEvent.end.getTime() < new Date().getTime()) {
+	                $event.css("backgroundColor", "#aaa");
+	                $event.find(".time").css({ "backgroundColor": "#999", "border": "1px solid #888" });
+	            }
+	        },
+	        eventNew: function (calEvent, $event) {
+	            $.ajax(
+					{
+					    type: "POST",
+					    url: '@Url.Action("GetCircuitAndTypeSessionByStartDate","Planning")',
+					    data: { startDate: calEvent.start.valueOf().toString() },
+					    success: function (data) {
+
+					        var circuitAndTypeSessionArray = $.parseJSON(data);
+
+					        var $dialogContent = $("#event_create_container");
+					        resetForm($dialogContent);
+					        var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
+					        var endField = $dialogContent.find("select[name='end']").val(calEvent.end);
+					        var titleField = $dialogContent.find("input[name='title']");
+					        var bodyField = $dialogContent.find("textarea[name='body']");
+					        var circuitField = $dialogContent.find("select[name='circuit']");
+					        var typeSessionField = $dialogContent.find("select[name='typesession']");
+					        var nbparticipantField = $dialogContent.find("input[name='nbparticipant']");
+					        var employeField = $("#calendar_selection").find("select[name='SelectedFormateur']");
+
+					        $dialogContent.dialog({
+					            modal: true,
+					            title: "Nouvelle Session",
+					            close: function () {
+					                $dialogContent.dialog("destroy");
+					                $dialogContent.hide();
+					                $('#calendar').weekCalendar("removeUnsavedEvents");
+					            },
+					            buttons: {
+					                save: function () {
+
+					                    calEvent.id = id;
+					                    id++;
+					                    calEvent.start = new Date(startField.val());
+					                    calEvent.end = new Date(endField.val());
+					                    calEvent.title = titleField.val();
+
+					                    var heuredebut = calEvent.start;
+					                    var heurefin = calEvent.end;
+					                    var nom = calEvent.title;
+					                    var typesessionName = typeSessionField.val();
+					                    var circuitName = circuitField.val();
+					                    var nbparticipant = nbparticipantField.val();
+					                    var employeId = employeField.val();
+
+					                    $.ajax(
+				                            	{
+				                            	    type: "POST",
+				                            	    url: '@Url.Action("CreateSession","Planning")',
+				                            	    data: { heureDebut: heuredebut.valueOf().toString(), heureFin: heurefin.valueOf().toString(), sessionName: nom.toString(), typeSessionName: typesessionName.toString(), circuitName: circuitName.toString(), nbParticipant: nbparticipant.toString(), formateurId: employeId.toString() },
+				                            	    success: function (data) {
+				                            	        if (data.Success == true) {
+				                            	            $calendar.weekCalendar("removeUnsavedEvents");
+				                            	            $calendar.weekCalendar("updateEvent", calEvent);
+				                            	            $dialogContent.dialog("close");
+				                            	            displayMessage("<strong>Session crée avec succée !</strong>");
+				                            	        }
+				                            	        else if (data.Success == false) {
+				                            	            displayMessage("<strong>Erreur lors de la création de la session</strong>");
+				                            	            $dialogContent.dialog("close");
+				                            	        }
+				                            	    },
+				                            	    error: function () {
+				                            	        displayMessage("<strong>Erreur lors de la création de la session</strong>");
+				                            	        $dialogContent.dialog("close");
+				                            	    }
+				                            	});
+					                },
+					                cancel: function () {
+					                    $dialogContent.dialog("close");
+					                }
+					            }
+					        }).show();
+
+					        $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
+					        setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
+					        setupTypeSessionAndCircuitFiels(circuitField, typeSessionField, circuitAndTypeSessionArray)
+					    },
+					    error: function () {
+					        $("div.wc-scrollable-grid").css({ 'display': 'none' });
+					    }
+					});
+	        },
+	        eventDrop: function (calEvent, $event) {
+	            displayMessage("<strong>Session déplacée</strong><br/>Start: " + calEvent.start + "<br/>End: " + calEvent.end);
+	        },
+	        eventClick: function (calEvent, $event) {
+	            $.ajax(
+					{
+					    type: "POST",
+					    url: '@Url.Action("GetSessionById","Planning")',
+					    data: { idSession: calEvent.id },
+					    success: function (data) {
+
+					        if (calEvent.readOnly) {
+					            return;
+					        }
+
+					        var $dialogContent = $("#event_edit_container");
+					        resetForm($dialogContent);
+
+					        var result = $.parseJSON(data);
+					        var startField = $dialogContent.find("label[name='start']").text(calEvent.start.toString("HH:mm:ss"));
+					        var endField = $dialogContent.find("label[name='end']").text(calEvent.end.toString("HH:mm:ss"));
+					        var titleField = $dialogContent.find("label[name='title']").text(calEvent.title);
+					        var titleField = $dialogContent.find("label[name='circuit']").text(result.Circuit);
+					        var titleField = $dialogContent.find("label[name='typesession']").text(result.TypeSession);
+					        var titleField = $dialogContent.find("label[name='nbparticipant']").text(result.NbParticipant);
+					        $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
+
+					        $dialogContent.dialog({
+					            modal: true,
+					            title: "Détail - " + calEvent.title,
+					            close: function () {
+					                $dialogContent.dialog("destroy");
+					                $dialogContent.hide();
+					                $('#calendar').weekCalendar("removeUnsavedEvents");
+					            },
+					            buttons: {
+					                Ok: function () {
+					                    $dialogContent.dialog("close");
+					                },
+					                Delete: function () {
+					                    $.ajax(
+				                            	{
+				                            	    type: "POST",
+				                            	    url: '@Url.Action("DeleteSession","Planning")',
+				                            	    data: { sessionName: $dialogContent.find("label[name='title']").text() },
+				                            	    success: function (data) {
+				                            	        if (data.Success == true) {
+				                            	            $calendar.weekCalendar("removeUnsavedEvents");
+				                            	            $calendar.weekCalendar("updateEvent", calEvent);
+				                            	            $dialogContent.dialog("close");
+				                            	            $calendar.weekCalendar("refresh");
+				                            	            displayMessage("<strong>Session supprimée avec succés !</strong>");
+				                            	        }
+				                            	        else if (data.Success == false) {
+				                            	            displayMessage("<strong>Erreur lors de la suppression de la session</strong>");
+				                            	            $dialogContent.dialog("close");
+				                            	        }
+				                            	    },
+				                            	    error: function () {
+				                            	        displayMessage("<strong>Erreur lors de la suppression de la session</strong>");
+				                            	        $dialogContent.dialog("close");
+				                            	    }
+				                            	});
+                                    }
+					            }
+					        }).show();
+					        $(window).resize().resize(); //fixes a bug in modal overlay size ??
+
+					    },
+					    error: function () {
+					        $("div.wc-scrollable-grid").css({ 'display': 'none' });
+					    }
+					});
+
+	        },
+	        noEvents: function () {
+	            displayMessage("Il n'y a pas d'evenement planifie pour cette semaine");
+	        },
+	        data: function (start, end, callback) {
+	            var dataSource = $('#data_source').val();
+
+	            $.ajax(
+					{
+					    type: "POST",
+					    url: '@Url.Action("GetSession","Planning")',
+					    data: { idFormateur: dataSource },
+					    success: function (data) {
+					        $("div.wc-scrollable-grid").css({ 'display': 'block' });
+					        var result = $.parseJSON(data);
+					        var serie = ConvertDate(result);
+					        callback(serie);
+					    },
+					    error: function () {
+					        $("div.wc-scrollable-grid").css({ 'display': 'none' });
+					    }
+					});
+
+	        },
+	        // I18N
+	        firstDayOfWeek: $.datepicker.regional['fr'].firstDay,
+	        shortDays: $.datepicker.regional['fr'].dayNamesShort,
+	        longDays: $.datepicker.regional['fr'].dayNames,
+	        shortMonths: $.datepicker.regional['fr'].monthNamesShort,
+	        longMonths: $.datepicker.regional['fr'].monthNames,
+	        dateFormat: "d F Y"
+	    });
+
+	    function leftPadWithZeroes(str, len) {
+	        return (new Array(len + 1).join('0') + str).slice(-len);
+	    }
+
+	    function ConvertDate(ArrayJSONObject) {
+	        var monthname = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
+	        //Foreach sur tout les JSONObject valeur, ( les session quoi ) et ajouts dans la serie pour le graph !
+	        $.each(ArrayJSONObject, function (i, value) {
+	            ArrayJSONObject[i].start = new Date(parseInt(ArrayJSONObject[i].start.replace(/\/+Date\(([\d+-]+)\)\/+/, '$1')));
+	            ArrayJSONObject[i].end = new Date(parseInt(ArrayJSONObject[i].end.replace(/\/+Date\(([\d+-]+)\)\/+/, '$1')));
+
+	        });
+
+	        return ArrayJSONObject;
+	    }
+
+	    $('#data_source').change(function () {
+	        $calendar.weekCalendar("refresh");
+	    });
+
+	    function resetForm($dialogContent) {
+	        $dialogContent.find("input").val("");
+	        $dialogContent.find("textarea").val("");
+	    }
+
+	    function displayMessage(message) {
+	        $("#message").html(message).fadeIn();
+	    }
+
+	    /*
+	    * Sets up the start and end time fields in the calendar event
+	    * form for editing based on the calendar event being edited
+	    */
+	    function setupStartAndEndTimeFields($startTimeField, $endTimeField, calEvent, timeslotTimes) {
+
+	        $startTimeField.empty();
+	        $endTimeField.empty();
+
+	        for (var i = 0; i < timeslotTimes.length; i++) {
+	            var startTime = timeslotTimes[i].start;
+	            var endTime = timeslotTimes[i].end;
+	            var startSelected = "";
+	            if (startTime.getTime() === calEvent.start.getTime()) {
+	                startSelected = "selected=\"selected\"";
+	            }
+	            var endSelected = "";
+	            if (endTime.getTime() === calEvent.end.getTime()) {
+	                endSelected = "selected=\"selected\"";
+	            }
+	            $startTimeField.append("<option value=\"" + startTime + "\" " + startSelected + ">" + timeslotTimes[i].startFormatted + "</option>");
+	            $endTimeField.append("<option value=\"" + endTime + "\" " + endSelected + ">" + timeslotTimes[i].endFormatted + "</option>");
+
+	            $timestampsOfOptions.start[timeslotTimes[i].startFormatted] = startTime.getTime();
+	            $timestampsOfOptions.end[timeslotTimes[i].endFormatted] = endTime.getTime();
+
+	        }
+	        $endTimeOptions = $endTimeField.find("option");
+	        $startTimeField.trigger("change");
+	    }
+
+	    function setupTypeSessionAndCircuitFiels($circuitField, $typeSessionField, circuitAndTypeSessionArray) {
+	        $circuitField.empty();
+	        $typeSessionField.empty();
+
+	        //On s'ocuupe des circuits ici
+	        for (var i = 0; i < circuitAndTypeSessionArray[0].Value.length; i++) {
+	            var circuit = circuitAndTypeSessionArray[0].Value[i];
+
+	            var circuitSelected = "";
+	            if (circuit === circuitAndTypeSessionArray[0].Value[0]) {
+	                circuitSelected = "selected=\"selected\"";
+	            }
+
+	            $circuitField.append("<option value=\"" + circuit + "\" " + circuitSelected + ">" + circuit + "</option>");
+	        }
+
+	        //On s'ocuupe des typesession ici
+	        for (var i = 0; i < circuitAndTypeSessionArray[1].Value.length; i++) {
+	            var typesession = circuitAndTypeSessionArray[1].Value[i];
+
+	            var typeSessionSelected = "";
+	            if (typesession === circuitAndTypeSessionArray[1].Value[0]) {
+	                typeSessionSelected = "selected=\"selected\"";
+	            }
+
+	            $typeSessionField.append("<option value=\"" + typesession + "\" " + typeSessionSelected + ">" + typesession + "</option>");
+	        }
+
+
+	        $circuitField.trigger("change");
+	    }
+
+	    var $endTimeField = $("select[name='end']");
+	    var $endTimeOptions = $endTimeField.find("option");
+	    var $timestampsOfOptions = { start: [], end: [] };
+
+	    //reduces the end time options to be only after the start time options.
+	    $("select[name='start']").change(function () {
+	        var startTime = $timestampsOfOptions.start[$(this).find(":selected").text()];
+	        var currentEndTime = $endTimeField.find("option:selected").val();
+	        $endTimeField.html(
+			$endTimeOptions.filter(function () {
+			    return startTime < $timestampsOfOptions.end[$(this).text()];
+			})
+			);
+
+	        var endTimeSelected = false;
+	        $endTimeField.find("option").each(function () {
+	            if ($(this).val() === currentEndTime) {
+	                $(this).attr("selected", "selected");
+	                endTimeSelected = true;
+	                return false;
+	            }
+	        });
+
+	        if (!endTimeSelected) {
+	            //automatically select an end date 2 slots away.
+	            $endTimeField.find("option:eq(1)").attr("selected", "selected");
+	        }
+
+	    });
+
+	});
+
+</script>
+<div class="Subtitle">
+	<div class="ShadowTitle">
+		Planning</div>
+	<div class="FrontTitle">
+		Planning</div>
+</div>
+
+    <div id="message"  class="ui-corner-all">
+	</div>
+
+<div id="calendar_selection" class="ui-corner-all">
+		<strong>Selectionner un formateur : </strong>
+			@Html.DropDownListFor(x => x.SelectedFormateur, new SelectList(Model.ListeFormateur, "Key", "Value", Model.ListeFormateur), "-- Choix du Formateur --", new { id="data_source"})
+	</div>
+
+<div id="calendar">
+</div>
+
+<div id="event_edit_container" style="width: auto; min-height: 38px; height: auto; display: none; ">
+		<form>
+			<input type="hidden">
+			<ul>
+				<li>
+					<span>Date : </span><span class="date_holder"></span> 
+				</li>
+				<li>
+					<label for="start">Heure de début : </label><label name="start"></label>
+				</li>
+				<li>
+					<label for="end">Heure de fin : </label><label name="end"></label>
+				</li>
+				<li>
+					<label for="title">Nom : </label><label type="text" name="title"></label>
+				</li>
+				<li>
+					<label for="body">Type de session : </label><label name="typesession"></label>
+				</li>
+				<li>
+					<label for="body">Lieu : </label><label name="circuit"></label>
+				</li>
+				<li>
+					<label for="body">Nombre de participant : </label><label name="nbparticipant"></label>
+				</li>
+			</ul>
+		</form>
+	</div>
+
+<div id="event_create_container" style="width: auto; min-height: 38px; height: auto; display: none; ">
+		<form>
+			<input type="hidden">
+			<ul>
+				<li>
+					<span>Date : </span><span class="date_holder"></span> 
+				</li>
+				<li>
+					<label for="start">Heure de début : </label><select name="start" disabled="disabled"><option value="">Select Start Time</option></select>
+				</li>
+				<li>
+					<label for="end">Heure de fin : </label><select name="end"><option value="">Select End Time</option></select>
+				</li>
+				<li>
+					<label for="title">Nom : </label><input type="text" name="title">
+				</li>
+                <li>
+					<label for="end">Type de session : </label><select name="typesession"><option value="">Selectionnez un type de session</option></select>
+				</li>
+                <li>
+					<label for="end">Lieu : </label><select name="circuit"><option value="">Selectionnez un circuit</option></select>
+				</li>
+                <li>
+					<label for="title">Nombre de participant : </label><input type="text" name="nbparticipant">
+				</li>
+			</ul>
+		</form>
+	</div>

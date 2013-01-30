@@ -1,0 +1,66 @@
+﻿#actu-list-item
+{
+    margin: auto;
+    margin-top: 40px;
+    height: 500px;
+    width: 800px;
+    overflow: auto;
+}
+
+#actu-table
+{
+    text-align: left;
+}
+#actu-td-image
+{
+    width: 200px;
+    height: 165px;
+}
+
+#actu-td-text
+{
+    width: 500px;
+    height: 200px;
+}
+
+#actu-title
+{   
+    font-size: 18px;
+    text-decoration:none;
+    color: #7FD4FF;
+    cursor:pointer;
+}
+
+#line
+{
+    height:3px;
+ background-image:url(themes/base/images/Content/Actus/LineActuB.png);
+ background-repeat:no-repeat;
+}
+#actu-date
+{
+    margin-top:10px;
+    font-size: 11px;
+    color: #7FD4FF;
+}
+#actu-content
+{
+    font-size: 12px;
+    color: Black;
+}
+
+a
+{
+cursor:pointer;
+}
+
+#actu-item
+{
+margin-top:20px;
+}
+
+table
+{
+    margin: auto;
+    text-align: left;
+}

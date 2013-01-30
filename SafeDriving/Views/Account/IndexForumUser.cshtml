@@ -1,0 +1,33 @@
+﻿<link href="@Url.Content("~/Content/Register.css")" rel="stylesheet" type="text/css" />
+@model SafeDriving.Models.CompteModel
+@{
+    ViewBag.Title = "Mon Compte";
+}
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Mon Compte</div>
+    <div class="FrontTitle">
+        Mon Compte</div>
+</div>
+@*@using (Html.BeginForm("Edit", "Account",FormMethod.Get))
+{*@
+<div id="edit-body">
+    <table id="table-form">
+        <tr>
+            <td>
+                <div class="shadow" id="edit-content-form">
+                    <div class="Subtitle">
+                        <div class="littleShadowTitle">
+                            Mes Infos</div>
+                        <div class="littleFrontTitle">
+                            Mes Infos</div>
+                    </div>
+                    <div id="partial-forms">
+                    @Html.Partial("MonComptePartial")
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+@*}*@ 

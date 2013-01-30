@@ -1,0 +1,35 @@
+﻿@model Direction.Models.TopicViewModels.TopicViewModel
+
+<script type="text/javascript" language="javascript">
+    
+    function ShowEditPartial() {
+        $.ajax(
+         {
+             type: "POST",
+             url: '@Url.Action("EditPartial", "Forum")',
+             data: $('form').serialize(),
+             success: function (data) {
+                 if (data.toString() == "[object Object]") {
+                     $("#CreateMessage").hide();
+                     $("#CommitMessage").show();
+                 }
+                 else {
+                 }
+             }
+         });
+     }
+
+</script>
+
+    <div id="CreateMessage" style="display:inline">
+    <span class="button-right"><label class="editor-label">Répondre</label> <input type="submit" value="" name="Edit" class="button-edit" onclick="javascript:ShowEditPartial()"  /></span>
+    </div>
+    
+    @using (Html.BeginForm("Topic", "Forum", FormMethod.Post))
+    {
+           <div id="CommitMessage" style="display:none">
+                @Html.TextAreaFor(x => x.MessageNewTopic, new {@class = "teaxtarea-forum"})
+                <span class="button-right"><label class="editor-label">Valider</label> <input type="submit" value="" name="Edit" class="buttonSubmit"/></span>
+            </div>
+    }
+ 

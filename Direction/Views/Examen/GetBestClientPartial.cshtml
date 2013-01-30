@@ -1,0 +1,71 @@
+﻿@model Direction.Models.ExamenViewModels.ExamenViewModel
+@if (Model.ListeBestClient != null)
+{
+    <div id="message">
+        @Html.Encode(TempData["Message"])
+    </div>
+
+    foreach (var bestClient in Model.ListeBestClient)
+    {
+    <table style="border:2px solid #bfbfbf; margin-top:40px; width:300px; border-spacing:0px;">
+        <tr style="background-color:#bfbfbf; color:White;">
+            <td>
+                Nom Prénom:
+            </td>
+            <td>
+                @Html.Label(bestClient.Nom) - @Html.Label(bestClient.Prenom)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date de Naissance: 
+            </td>
+            <td>
+                @Html.Label(bestClient.DateNaissance)
+            </td>
+        </tr>
+        <tr>
+        <td>Email</td>
+            <td>
+                @Html.Label(bestClient.Email)
+            </td>
+        </tr>
+        <tr>
+        <td>Adresse:</td>
+            <td>
+                @Html.Label(bestClient.AdressePostale)
+            </td>
+        </tr>
+        <tr>
+        <td></td>
+            <td>
+                @Html.Label(bestClient.CodePostal) - @Html.Label(bestClient.Ville)
+            </td>
+        </tr>
+        <tr>
+        <td>Tel:</td>
+            <td>
+                @Html.Label(bestClient.Tel)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Moyenne:
+            </td>
+            <td>
+                @Html.Label(bestClient.Moyenne)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nombre de note:
+            </td>
+            <td>
+                @Html.Label(bestClient.NbNote)
+            </td>
+        </tr>
+    </table>
+
+                
+    }
+}

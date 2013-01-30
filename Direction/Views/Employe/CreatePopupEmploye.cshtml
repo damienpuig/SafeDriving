@@ -1,0 +1,54 @@
+﻿@model Direction.Models.AccountViewModels.EmployeViewModel
+@{
+	ViewBag.Title = "Detail de l'employe";
+	Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+<div class="popuptitle">Detail de l'employe</div>
+
+<div>
+
+@using (Html.BeginForm("CreatePopEmploye", "Employe", FormMethod.Get))
+{ 
+	<div>
+		@Html.LabelFor(x => x.Prenom)
+		@Html.Label(Model.Prenom)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.Nom)
+		@Html.Label(Model.Nom)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.Pseudo)
+		@Html.Label(Model.Pseudo)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.AdressePostale)
+		@Html.Label(Model.AdressePostale)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.CodePostal)
+		@Html.Label(Model.CodePostal)
+	</div>
+	<div>
+		@Html.LabelFor(x => x.Ville)
+		@Html.Label(Model.Ville)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.Email)
+		@Html.Label(Model.Email)
+		
+	</div>
+	<div>
+		@Html.LabelFor(x => x.Tel)
+		@Html.Label(Model.Tel)
+		
+	</div>
+}
+
+</div>	

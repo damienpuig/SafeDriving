@@ -1,0 +1,44 @@
+﻿@model Formateur.Models.LogOnModel
+           
+@if (Request.IsAuthenticated)
+{
+    <div id="Profil">
+        <img src="@Url.Action("ShowAvatar","Account")" alt="Image Profil" />
+        <br />
+    <div id="name-user"> @HttpContext.Current.User.Identity.Name</div>
+       
+    </div>
+    <div id="deco">@Html.ActionLink("Déconnexion","LogOff", "Account")</div>
+    
+}
+
+else
+{
+    using (Html.BeginForm("LogOn","Account", FormMethod.Post))
+    {
+        
+    <fieldset id="log-partial">
+        <div class="editor-label">
+            @Html.LabelFor(m => m.UserName)
+        </div>
+        <div >
+            @Html.TextBoxFor(m => m.UserName, new { @class = "editor-field-login" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Password)
+        </div>
+        <div>
+            @*            @Html.TextBox("Passwd", null, new { @class = "editor-field" })*@
+            @Html.PasswordFor(m => m.Password, new { @class = "editor-field-login" })
+        </div>
+        <div class="editor-CheckBox">
+            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checkBox" })
+            @Html.LabelFor(m => m.RememberMe)
+        </div>
+    </fieldset>
+    
+    <div id="Validate">
+        <input type="submit" value="" name="logOn"  class="buttonValidate" id="submitButton" />
+    </div>
+    }
+}

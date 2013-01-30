@@ -1,0 +1,30 @@
+﻿@model SafeDriving.Models.ArticleViewModels.ArticleViewModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+<link href="@Url.Content("~/Content/Actus.css")" rel="stylesheet" type="text/css" />
+    <a class="return" href="@Url.Action("Index","Prevention")">
+    
+    </a>
+            <div id="actu-item">
+                <table id="actu-table">
+                    <tr>
+                        <td id="actu-td-image">
+                            <img alt="Image Actualité" src="../../Content/themes/base/images/Content/prevention/image.png" />
+                        </td>
+                        <td id="actu-td-text">
+                            <div id="actu-title" >
+                                @Html.Label(Model.Titre)
+                            </div>
+                            <div id="line"></div>
+                            <div id="actu-date">
+                                @Html.Label(Model.Date)
+                            </div>
+                            <div id="actu-content">
+                                @Model.Contenu
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>

@@ -1,0 +1,335 @@
+﻿@model Direction.Models.AccountViewModels.ClientViewModel
+@{
+    ViewBag.Title = "Inscrire";
+}
+<link href="@Url.Content("~/Content/Register.css")" rel="stylesheet" type="text/css" />
+<link href="../../Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Inscription</div>
+    <div class="FrontTitle">
+        Inscription</div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1900:1995'
+        });
+    });
+
+    function GiveMeDate() {
+        $('#DateNaissance').val($('#datepicker').val());
+    }
+
+    function GiveMePseudoIsUnique() {
+        $.ajax(
+               {
+                   type: "POST",
+                   url: '@Url.Action("Pseudo", "Client")',
+                   data: $('form').serialize(),
+                   success: function (data) {
+                       if (data.toString() == "[object Object]") {
+                           $('.pseudovalidation').text("* Ce pseudo est deja pris");
+                       }
+                       else {
+                           $('.pseudovalidation').text("");
+                       }
+                   }
+               });
+    }
+
+</script>
+@using (Html.BeginForm("Inscrire", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{  
+    <div id="fieldsetRegister">
+        <fieldset>
+            <table id="register-page">
+                <tr>
+                    <td>
+                        <table id="formulaire">
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Nom)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Nom, new { @class = "editor-field" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Nom)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Prenom)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Prenom, new { @class = "editor-field" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Prenom)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Pseudo)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Pseudo, new { @class = "editor-field", onchange = "javascript:GiveMePseudoIsUnique()" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        <span class="pseudovalidation"></span>
+                                        @Html.ValidationMessageFor(m => m.Pseudo)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Password)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "editor-field" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Password)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.ConfirmPassword)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "editor-field" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.DateNaissance)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.HiddenFor(m => m.DateNaissance)
+                                        <div class="demo">
+                                            <input type="text" id="datepicker" onchange="GiveMeDate()" class="editor-field" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.DateNaissance)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.AdressePostale)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.AdressePostale, new { @class = "editor-field-long" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.AdressePostale)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.CodePostal)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.CodePostal, new { @class = "editor-field-short" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.CodePostal)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Ville)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Ville, new { @class = "editor-field-long" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Ville)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Tel)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Tel, new { @class = "editor-field" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Tel)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Email)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "editor-field-long" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="editor-label">
+                                        @Html.Label("Photo")
+                                    </div>
+                                </td>
+                                <td>
+                                    <input id="buttonUploadFile" type="file" accesskey="file" name="file" />
+                                </td>
+                            </tr>
+                            <tr>
+                            <td></td>
+                                <td>
+                                    <div class="editor-label" style="margin-top:15px; margin-left:15px;">
+                                        @Html.CheckBoxFor(m => m.IsCoded) @Html.LabelFor(m => m.IsCoded)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="ValidationMessage">
+                                        @Html.ValidationMessageFor(m => m.IsCoded)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <div id="register-button-validate">
+                                        <input type="submit" value="" name="logOn" class="buttonValidate" style="display: inline" />
+                                        @Html.Label("Enregistrer")
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <div id="message">
+                            @Html.Encode(TempData["Message"])
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+}

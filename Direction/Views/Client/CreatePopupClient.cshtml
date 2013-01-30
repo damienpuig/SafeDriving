@@ -1,0 +1,152 @@
+﻿
+
+@model Direction.Models.AccountViewModels.ClientViewModel
+@{
+    ViewBag.Title = "Detail du client";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+<div>
+<div class="popuptitle">
+Fiche Client</div>
+<div id="popup-content" style="width:600px;">
+
+@using (Html.BeginForm("CreatePopClient", "Client", FormMethod.Get))
+{ 
+    <table id="table-view-infos">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Nom)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.Label(Model.Nom)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Prenom)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.Label(Model.Prenom)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Pseudo)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.Label(Model.Pseudo)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.DateNaissance)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.Label(Model.DateNaissance)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.AdressePostale)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field-long">
+                        @Html.Label(Model.AdressePostale)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.CodePostal)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field-short">
+                        @Html.Label(Model.CodePostal)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Ville)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field-long">
+                        @Html.Label(Model.Ville)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Tel)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.Label(Model.Tel)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field-long">
+                        @Html.Label(Model.Email)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        @* <tr>
+                       <td rowspan="2">
+                <input type="submit" value="" name="Edit" class="button-edit" onclick="javascript:ShowEditPartial()" />
+            </td>
+        </tr>*@
+    </table>
+}
+
+</div>	
+
+</div>

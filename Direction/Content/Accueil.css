@@ -1,0 +1,37 @@
+﻿.Accueil-text
+{
+    font-size:15px;
+    height:75px;
+    min-width:300px;
+    margin:auto;
+}
+
+#Accueil-table
+{
+    margin:auto;
+    vertical-align:middle;
+    border-spacing:40px;
+    color:#BFBFBF;
+}
+
+.bienvenue-text
+{
+    margin:auto;
+    text-align:center;
+    color:#B0B0B0;
+    font-size:20px;
+    width:500px;
+    margin-bottom:50px;
+}
+
+a
+{
+    text-decoration:none;
+    color:inherit;
+}
+
+.link-in-text
+{
+    color:#8d94cd;
+}
+

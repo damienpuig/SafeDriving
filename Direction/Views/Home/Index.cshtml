@@ -1,0 +1,94 @@
+﻿
+<link href="@Url.Content("~/Content/Accueil.css")" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Accueil";
+}
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Accueil</div>
+    <div class="FrontTitle">
+        Accueil
+    </div>
+</div>
+<div id="message">
+    @Html.Encode(TempData["Message"])
+</div>
+<div class="text bienvenue-text">
+    Bienvenue sur l'outil de gestion de la relation client de Safe Driving, il vous permet de: </div>
+<table id="Accueil-table">
+    <tr>
+        <td>
+            <div class="LittleSubtitle shadow">
+                <div class="ShadowLittleTitle">
+                    <a href="@Url.Action("Index", "Articles")">Articles</a></div>
+                <div class="FrontLittleTitle">
+                    <a href="@Url.Action("Index", "Articles")">Articles</a></div>
+            </div>
+        </td>
+        <td>
+            <div class="text Accueil-text">
+                <a class="link-in-text" href="@Url.Action("Index", "Articles")">Créer</a> de nouveaux articles d'actualité ou de prévention publiés sur votre site communautaire,  personnaliser le texte et  y ajouter une image.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="LittleSubtitle shadow">
+                <div class="ShadowLittleTitle">
+                    <a href="@Url.Action("Consulter", "Client")">Elèves</a></div>
+                <div class="FrontLittleTitle">
+                    <a href="@Url.Action("Consulter", "Client")">Elèves</a></div>
+            </div>
+        </td>
+        <td>
+            <div class="text Accueil-text">
+                Gérer vos élèves, les <a class="link-in-text" href="@Url.Action("Inscrire", "Client")">inscrire</a> en remplissant un formulaire, <a class="link-in-text" href="@Url.Action("Consulter", "Client")">importer</a> leurs informations depuis le site communautaire et <a class="link-in-text" href="@Url.Action("Consulter", "Client")">consulter</a> leur fiche de renseignement.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="LittleSubtitle shadow">
+                <div class="ShadowLittleTitle">
+                    <a href="@Url.Action("Consulter", "Employe")">Employés</a></div>
+                <div class="FrontLittleTitle">
+                    <a href="@Url.Action("Consulter", "Employe")">Employés</a></div>
+            </div>
+        </td>
+        <td>
+            <div class="text Accueil-text">
+               Gérer vos formateurs, les <a class="link-in-text" href="@Url.Action("Inscrire", "Employe")">inscrire</a> en remplissant un formulaire et <a class="link-in-text" href="@Url.Action("Consulter", "Employe")">consulter</a> leur fiche de renseignement.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="LittleSubtitle shadow">
+                <div class="ShadowLittleTitle">
+                    <a href="@Url.Action("Index", "Planning")">Planning</a></div>
+                <div class="FrontLittleTitle">
+                    <a href="@Url.Action("Index", "Planning")">Planning</a></div>
+            </div>
+        </td>
+        <td>
+            <div class="text Accueil-text">
+               Administrer le planning de l'auto école, <a class="link-in-text" href="@Url.Action("Index", "Planning")">créer</a> de nouvelles sessions tout en spécifiant le formateur, le véhicule et le nombre de participant maximum.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="LittleSubtitle shadow">
+                <div class="ShadowLittleTitle">
+                    <a href="@Url.Action("Index", "Examen")">Examen</a></div>
+                <div class="FrontLittleTitle">
+                    <a href="@Url.Action("Index", "Examen")">Examen</a></div>
+            </div>
+        </td>
+        <td>
+            <div class="text Accueil-text">
+                <a class="link-in-text" href="@Url.Action("Index", "Examen")">Obtenir</a> la liste des meilleurs candidats pour un examen et un nombre de participant maximum définis.
+            </div>
+        </td>
+    </tr>
+</table>

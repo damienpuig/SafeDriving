@@ -1,0 +1,97 @@
+﻿@model Direction.Models.ArticleViewModels.ArticleViewModel
+<link href="@Url.Content("~/Content/Articles.css")" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Articles</div>
+    <div class="FrontTitle">
+        Articles</div>
+</div>
+@using (Html.BeginForm("Index", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{  
+    <div id="content">
+        <fieldset>
+            <table class="table-forms">
+                <tr>
+                    <td class="editor-label-table">
+                        <label class="editor-label">
+                            Article de type:
+                        </label>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.TypeArticleId, new SelectList(Model.ListeCategorie, "Key", "Value", Model.TypeArticleId), "--- Type ---")
+                        
+                    </td>
+                    <td style="padding-left: 100px;">
+                        <div>
+                        </div>
+                        @*A changer en jquery*@ <a href="127.0.0.1:8065/Article">accéder à la page</a>
+                    </td>
+                </tr>
+                <tr>
+                <td>
+                </td>
+                <td>
+                <div class="ValidationMessage">
+                @Html.ValidationMessageFor(x => x.TypeArticleId)
+                </div>
+                </td>
+                </tr>
+                <tr>
+                    <td class="editor-label-table">
+                        <label class="editor-label ">
+                            Titre:
+                        </label>
+                    </td>
+                    <td colspan="2">
+                        @Html.TextBoxFor(x => x.Titre, new { @class = "editor-field field-width" })
+                        
+                    </td>
+
+                </tr>
+                <tr>
+                <td></td>
+                <td>
+                <div class="ValidationMessage"> @Html.ValidationMessageFor(x => x.Titre)</div>
+               
+                </td>
+                </tr>
+                <tr>
+                    <td class="editor-label-table">
+                        <label class="editor-label ">
+                            Contenu:
+                        </label>
+                    </td>
+                    <td colspan="2">
+                        @Html.TextAreaFor(x => x.Contenu, new { @class = "editor-field editor-textarea" })
+                        
+                    </td>
+                    
+                </tr>
+                                <tr>
+                <td></td>
+                <td>
+                <div class="ValidationMessage">@Html.ValidationMessageFor(x => x.Contenu)</div>
+               
+                </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+                        <div id="register-button-validate">
+                            <input type="submit" value="" name="logOn" class="buttonValidate" style="display: inline" />
+                            @Html.Label("Ajouter")
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <div id="message">
+                @Html.Encode(TempData["Message"])
+            </div>
+        </fieldset>
+    </div>
+}

@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+<script src="../../Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+
+    function isDDLSelectedValue() {
+
+        if ($('#SelectedListeOffre').html() != null) {
+            $('#Selection1').animate({
+                opacity: 1
+            }, { duration: 500 });
+        }
+
+        if ($('#SelectedListeTypeSession').html() != null) {
+            $('#Selection2').animate({
+                opacity: 1
+            }, { duration: 600 });
+        }
+
+
+        if ($('#SelectedListeSession').html() != null) {
+            $('#Selection3').animate({
+                opacity: 1
+            }, { duration: 600 });
+        }
+
+    }
+
+    $(document).ready(function () {
+
+        document.getElementById("Finalisation").style.opacity = 0;
+        document.getElementById("Selection1").style.opacity = 0;
+        document.getElementById("Selection2").style.opacity = 0;
+        document.getElementById("Selection3").style.opacity = 0;
+
+        $.ajax({
+            // Allez Damien On Fetche les données !!! DDL represente
+            async: true,
+            type: "GET",
+            url: '@Url.Action("FetchOffres", "Planning")',
+            success: function (data) {
+
+                var list = $.parseJSON(data);
+
+
+                for (var i = 0; i < list.length; i++) {
+                    addtoselect('SelectedListeOffre', list[i].text, list[i].value);
+                }
+            },
+            error: function () {
+                alert('ajax MAL called');
+            }
+        });
+
+        isDDLSelectedValue();
+
+    });
+
+
+
+
+    $(function () {
+        $("#SelectedDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1900:1995'
+        });
+    });
+
+
+    function GiveMeDate() {
+        $('#SelectedDate').val($('#SelectedDate').val());
+
+        if ($('#SelectedListeTypeSession option:selected').length) {
+            if ($('#SelectedListeOffre option:selected').length) {
+                EnvoiRequeteSessionLibre();
+            }
+        }
+    }
+
+
+    function addtoselect(selectid, param, value) {
+
+        $('#' + selectid).append('<option value=' + value + '>' + param + '</option>');
+
+    }
+
+
+
+    function EnvoiRequeteTypeSession() {
+        $.ajax(
+        {
+            type: "POST",
+            url: '@Url.Action("FetchTypeSession", "Planning")',
+            data: "SelectedListeOffre=" + $('#SelectedListeOffre').find(':selected').val(),
+            success: function (data) {
+
+                var list = $.parseJSON(data);
+
+                $('#SelectedListeTypeSession').children().remove().end();
+
+                for (var i = 0; i < list.length; i++) {
+                    addtoselect('SelectedListeTypeSession', list[i].text, list[i].value);
+                }
+            }
+        });
+
+        isDDLSelectedValue();
+    }
+
+
+    function EnvoiRequeteSessionLibre() {
+
+        if ($('#SelectedListeOffre').find(':selected').val()) {
+            $.ajax(
+        {
+            type: "POST",
+            url: '@Url.Action("FetchSession", "Planning")',
+            data: "SelectedListeTypeSession=" + $('#SelectedListeTypeSession').find(':selected').val() + '&SelectedDate=' + $('#SelectedDate').val(),
+            success: function (data) {
+
+
+                var list = $.parseJSON(data);
+
+                for (var i = 0; i < list.length; i++) {
+                    addtoselect('SelectedListeSession', list[i].text, list[i].value);
+                }
+
+            }
+        });
+
+
+        isDDLSelectedValue();
+        }
+    }
+
+    function FinishInscription() {
+
+        if ($('#SelectedListeSession').find(':selected').val()) {
+            $.ajax(
+        {
+            type: "POST",
+            url: '@Url.Action("PostQueryOverSession", "Planning")',
+            data: "SelectedListeOffre=" + $('#SelectedListeOffre').find(':selected').val() + "&SelectedListeTypeSession=" +
+             $('#SelectedListeTypeSession').find(':selected').val() + "&SelectedListeSession=" + $('#SelectedListeSession').find(':selected').val(),
+            success: function (data) {
+
+                $('#Finalisation').animate({
+                    opacity: 1 
+                }, { duration: 600 });
+            }
+        });
+
+
+        }
+    }
+</script>
+<link href="../../Content/themes/base/images/DatePicker/jquery-ui-1.8.13.custom.css"
+    rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<div id="fieldsetRegister">
+    <fieldset>
+        <legend>Selectionneato de Data</legend>
+        @Html.Label("Choix de session.")
+        <table>
+            <tr>
+                <td>
+                    <div id="Selection1">
+                        <select id="SelectedListeOffre" onchange="javascript:EnvoiRequeteTypeSession()">
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div id="Selection2">
+                        <select id="SelectedListeTypeSession">
+                        </select>
+                        <input type="text" id="SelectedDate" onchange="GiveMeDate()" class="editor-field" />
+                    </div>
+                </td>
+                <td>
+                    <div id="Selection3">
+                        <select id="SelectedListeSession">
+                        </select>
+                        <input type="submit" name="Save" class="" id="saveButton" onclick="javascript:FinishInscription()" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div id="Finalisation" style="text-align:center; font-weight:bold; font-size:large;">L'inscription s'est terminé avec succès !</div>
+    </fieldset>
+</div>

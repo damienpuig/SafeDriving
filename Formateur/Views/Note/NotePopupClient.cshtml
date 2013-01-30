@@ -1,0 +1,58 @@
+﻿
+@model Formateur.Models.AccountViewModels.ClientCustomViewModel
+@{
+    ViewBag.Title = "Noter le client";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+<div>
+<div class="popuptitle">
+Fiche Client</div>
+<div id="popup-content" style="width:600px;">
+
+@using (Html.BeginForm("GoNote", "Note", FormMethod.Post))
+{ 
+    //On garde le viewmodel ici pour certaines valeurs, si il n'y a pas de hidden on perd le quelques propriétés du view model
+   @Html.HiddenFor(m => m.IdHistoriqueSession)
+
+
+    <table id="table-view-infos">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Nom)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                         @Html.Label(Model.Nom) @Html.Label(Model.Prenom)
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+                <tr>
+            <td>
+                <div class="editor-label">
+                 Noter   @Html.Label(Model.NamedSession) à la date @Html.Label(Model.Date)
+                </div>
+            </td>
+            <td>
+                <div class="margin-field">
+                    <div class="editor-field">
+                        @Html.EditorFor(p => p.Note) / 20
+                    </div>
+                </div>
+            </td>
+        </tr>
+         <tr>
+                       <td rowspan="2">
+                <input type="submit" value="noter l'eleve" name="Save" class="button-edit"/>
+            </td>
+        </tr>
+    </table>
+}
+
+</div>	
+
+</div>

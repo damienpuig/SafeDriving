@@ -1,0 +1,180 @@
+﻿@model SafeDriving.Models.ContactViewModel.ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<link href="@Url.Content("~/Content/Register.css")" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#categories").accordion();
+    });
+</script>
+
+<div class="Subtitle">
+<div class="ShadowTitle">Contact</div>
+<div class="FrontTitle">Contact</div>
+</div>
+
+@using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+{
+        <div id="contact-body">
+        <table id="table-body">
+            <tr>
+
+                <td>
+                     <span id="fieldsetEditWithTitle">
+                         <div class="shadow" id="edit-content-form">
+                        <div class="Subtitle">
+                            <div class="ShadowTitle">
+                                Message</div>
+                            <div class="FrontTitle">
+                                Message</div>
+                        </div>
+                        
+                        <div id="fieldsetEdit">
+                            <table id="formulaire">
+
+                                <tr>
+                                    <td>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(m => m.Nom)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Nom, new { @class = "editor-field" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="ValidationMessage">
+                                            @Html.ValidationMessageFor(m => m.Nom)
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(m => m.Prenom)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Prenom, new { @class = "editor-field" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="ValidationMessage">
+                                            @Html.ValidationMessageFor(m => m.Prenom)
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(m => m.Mail)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Mail, new { @class = "editor-field" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="ValidationMessage">
+                                            @Html.ValidationMessageFor(m => m.Mail)
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(m => m.Sujet)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @Html.TextBoxFor(m => m.Sujet, new { @class = "editor-field" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="ValidationMessage">
+                                            @Html.ValidationMessageFor(m => m.Sujet)
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="editor-label">
+                                            @Html.LabelFor(m => m.Message)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            @Html.TextAreaFor(m => m.Message, new { @class = "editor-field", multiline = "true", style = "height: 125px; resize: none;" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="ValidationMessage">
+                                            @Html.ValidationMessageFor(m => m.Message)
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <div id="register-button-validate" style="text-align: right;">
+                                @Html.Label("Envoyer")
+                                <input type="submit" value="" name="Save" class="buttonValidate" style="display: inline; margin-bottom:20px" />
+                            </div>
+
+                        </div>
+                         
+                    </div>
+                     </span>
+                </td>
+
+                <td>
+                
+                <span id="right-edit">
+                    "Pour toutes questions, informations sur nos prestations et tarifs,  
+                     pour toutes demandes d'inscriptions ou de migration de compte, <br /> <br />
+                     Merci de bien vouloir remplir le formulaire ci après.  <br /> <br />
+                     Nous traiterons votre demande dans les plus brefs délais."
+                </span>
+
+                <div id="message">
+                    @Html.Encode(ViewData["Message"])
+                </div>
+            </td>
+
+            </tr>
+    </table>
+    </div>
+}
+

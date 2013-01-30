@@ -1,0 +1,83 @@
+﻿@model SafeDriving.Models.TopicViewModels.TopicViewModel
+           
+@{
+    ViewBag.Title = "Topic";
+}
+<link href="@Url.Content("~/Content/Forum.css")" rel="stylesheet" type="text/css" />
+<a class="return" href="@Url.Action("Index", "Forum")"></a>
+<div class="Subtitle margin-title">
+    <div class="ShadowTitle">
+        Forum</div>
+    <div class="FrontTitle">
+        Forum</div>
+</div>
+<br />
+<br />
+<br />
+<div id="header-topic">@Model.Nom</div>
+<div class="message">
+    <table id="message-table">
+        <tr>
+            <td>
+                <div class="avatar">
+                    <img  src="@Url.Action("ShowAvatar", "Forum", new { id = Model.IdCreateur })" alt="Avatar user" class="img-avatar"/>
+                </div>
+            </td>
+            <td class="background-g shadow">
+                <table class="message-table">
+                    <tr>
+                        <td>
+                            @Html.Label("Autheur : ") @Model.NomCreateur
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.Label("Date de création : ") @Model.DateCreation
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.Label("Message initial : ") @Model.Contenu
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+@foreach (var item in Model.Messages)
+{
+    <div class="message">
+        <table>
+            <tr>
+                <td>
+                    <div class="avatar">
+                        <img src="@Url.Action("ShowAvatar", "Forum", new { id = item.IdCreateur })" alt="Avatar user" class="img-avatar"  />
+                    </div>
+                </td>
+                <td class="background-g shadow">
+                    <table class="message-table">
+                        <tr>
+                            <td>
+                                @Html.Label("Autheur : ") @item.NomCreateur
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Date : ") @item.DateCreation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.Label("Message : ") @item.Contenu
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<div id="test" class="message">
+    @Html.Partial("CreateMessagePartial")
+</div>

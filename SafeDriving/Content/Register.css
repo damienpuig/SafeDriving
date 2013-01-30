@@ -1,0 +1,193 @@
+﻿
+/* REGISTER CSS
+----------------------------------------------------------*/
+#fieldsetRegister
+{
+    margin: auto;
+    margin-top: 50px;
+}
+
+table
+{
+    text-align: left;
+    margin: auto;
+}
+
+#register-editor-CheckBox
+{
+    margin-top:10px;
+    color: #bfbfbf;
+    text-align: left;
+    font-size: 14px;
+    margin-left:50px;
+}
+
+#buttonUploadFile
+{
+    margin-left: 20px;
+    background-color: #ececec;
+    border: none;
+    border-color: transparent;
+    text-decoration: none;
+    width: 200px;
+    cursor: pointer;
+}
+
+#ui-datepicker-div
+{
+    width: 300px;
+    font-size: 15px;
+}
+
+#formulaire
+{
+    margin-top: 10px;
+    text-align: left;
+}
+
+#register-button-validate
+{
+    color: #bfbfbf;
+    margin: auto;
+    margin-top: 30px;
+    cursor: pointer;
+    width: 300px;
+    font-size: 23px;
+    vertical-align: middle;
+}
+
+#register-text-condition
+{
+    margin-left: 50px;
+    text-align: justify;
+    width: 350px;
+    font-size: 12px;
+}
+
+/* EDIT   & Mon Compte
+----------------------------------------------------------*/
+#table-form
+{
+    margin: auto;
+}
+
+#edit-text
+{
+    color: #bfbfbf;
+    text-align: left;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+#fieldsetEdit
+{
+    margin-top: 10px;
+}
+
+#edit-button-valid
+{
+    margin: 10px;
+    float: right;
+}
+
+#edit-content-form
+{
+    width: 480px;
+}
+
+#button-parcours-planning
+{
+    width: 420px;
+    height: 150px;
+    margin-bottom: 150px;
+    margin-left: 40px;
+}
+
+#parcoursB
+{
+    margin-bottom: 20px;
+}
+
+#right-edit
+{
+    width: 480px;
+}
+
+#prochainement
+{
+    width: 230px;
+    height: 120px;
+    background-color: White;
+    margin: auto;
+}
+
+#edit-body
+{
+    margin-top: 50px;
+}
+
+#partial-forms
+{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.margin-field
+{
+    vertical-align: middle;
+    height: 33px;
+}
+
+
+
+/* Contact
+----------------------------------------------------------*/
+#contact-body
+{
+    margin-top: 50px;
+}
+
+#contact-body #fieldsetEdit
+{
+    margin-top: 40px;
+}
+
+#contact-body #table-body
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#contact-body #table-body td
+{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#contact-body #right-edit
+{
+    text-align: justify;
+    font-size: 14px;
+    color: #bfbfbf;
+}
+
+#contact-body #formulaire tbody
+{
+    width: 500px;
+}
+#contact-body .editor-field
+{
+    font-family: Century Gothic;
+    font-weight: lighter;
+    width: 275px;
+}
+
+#contact-body #message
+{
+    color: #ffc600;
+    margin-top: 50px;
+    font-family: Century Gothic;
+    font-weight: lighter;
+}

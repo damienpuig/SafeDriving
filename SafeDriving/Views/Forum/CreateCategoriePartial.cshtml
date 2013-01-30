@@ -1,0 +1,36 @@
+﻿@model IList<SafeDriving.Models.CategorieViewModels.CategorieViewModel>
+
+<script type="text/javascript" language="javascript">
+
+    function ShowEditCategoriePartial() {
+        $.ajax(
+         {
+             type: "POST",
+             url: '@Url.Action("EditPartial", "Forum")',
+             data: $('form').serialize(),
+             success: function (data) {
+                 if (data.toString() == "[object Object]") {
+                     $("#CreateCategorie").hide();
+                     $("#CommitCategorie").show();
+                 }
+                 else {
+                 }
+             }
+         });
+    }
+
+</script>
+
+    <div id="CreateCategorie">
+        <input  value="" name="Edit" class="button-edit" onclick="javascript:ShowEditCategoriePartial()"  />
+    </div>
+    
+    @using (Html.BeginForm("Index", "Forum", FormMethod.Post))
+    {
+           <div id="CommitCategorie" style="display:none">
+           <div>@Html.TextBoxFor(x => x[0].TitreNewCategorie, new {@class="editor-field-long" })</div>
+           <div><input type="submit" value="" name="Edit" class="buttonValidate" /></div>
+                
+            </div>
+    }
+

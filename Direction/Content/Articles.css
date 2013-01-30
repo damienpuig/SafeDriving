@@ -1,0 +1,36 @@
+﻿body
+{
+}
+
+.field-width
+{
+    width: 550px;
+}
+
+.editor-label-table
+{
+    vertical-align: text-top;
+}
+
+
+#content
+{
+    margin: auto;
+}
+
+table
+{
+    margin: auto;
+    border-spacing: 5px;
+}
+
+#register-button-validate
+{
+    color: #bfbfbf;
+    float: right;
+    margin-top: 30px;
+    cursor: pointer;
+    width: 300px;
+    font-size: 23px;
+    vertical-align: middle;
+}

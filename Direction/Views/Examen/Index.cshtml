@@ -1,0 +1,110 @@
+﻿@model Direction.Models.ExamenViewModels.ExamenViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<script language="javascript" type="text/javascript">
+
+    $(document).ready(
+		 function () {
+		     $('#print').hide();
+		 });
+
+
+    function printdiv(printpage) {
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item(printpage).innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+
+
+
+    function getbest() {
+        $('#loading').show();
+        $.ajax(
+		{
+		    type: "POST",
+		    url: '@Url.Action("GetBestClient", "Examen")',
+		    data: $('form').serialize(),
+		    success: function (data) {
+		        $('#print').show();
+		        $('#loading').hide();
+		        $('#div_print').html(data);
+		    }
+		});
+    }
+
+</script>
+<div class="Subtitle">
+    <div class="ShadowTitle">
+        Examen</div>
+    <div class="FrontTitle">
+        Examen</div>
+</div>
+
+<form>
+<table style="margin:auto;">
+    <tr>
+        <td>
+        <div class="editor-label">  @Html.LabelFor(x => x.TypeExamen)</div>
+          
+        </td>
+        <td>
+            @Html.DropDownListFor(m => m.SelectedTypeExamen, new SelectList(Model.TypeExamen, "Key", "Value", Model.TypeExamen), "--- Type ---")
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+            <div class="ValidationMessage">@Html.ValidationMessageFor(x => x.SelectedTypeExamen)</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">@Html.LabelFor(x => x.NbPlace)</div>
+        </td>
+        <td>@Html.TextBoxFor(x => x.NbPlace, new { @class = "editor-field" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+            <div class="ValidationMessage">@Html.ValidationMessageFor(x => x.NbPlace)</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <label class="editor-label">Obtenir les meilleurs résultats</label>
+            <input name="getBest" type="button" onclick="getbest();" value="" class="searchButton" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div id="load" style="margin-left:130px">
+                <img id="loading" src="../../Content/themes/base/images/load2.gif" alt="Recherche en cours ..."
+                    style="display: none;" />
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div id="div_print" style="margin-left:100px;">
+                @Html.Partial("GetBestClientPartial")
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="print" style="margin-left:130px">
+                <input name="b_print" type="button" onclick="printdiv('div_print');" value="" class="printButton" />
+            </div>
+        </td>
+    </tr>
+</table>
+</form>

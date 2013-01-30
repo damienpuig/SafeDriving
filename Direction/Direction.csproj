@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2FD36317-2B66-40EB-B64E-32AA37DB60D9}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Direction</RootNamespace>
+    <AssemblyName>Direction</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Packages\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Packages\Castle Project\dotNet40\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Packages\Castle Project\dotNet40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
+    <Compile Include="AutoMapper\DateTimeCustomResolver.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\EmployeController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlanningController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AttributeHelpers.cs" />
+    <Compile Include="Helpers\HtmlExtensions.cs" />
+    <Compile Include="Helpers\ModelHelper.cs" />
+    <Compile Include="Helpers\Table\ActionType.cs" />
+    <Compile Include="Helpers\Table\ITableAction.cs" />
+    <Compile Include="Helpers\Table\Table.cs" />
+    <Compile Include="Helpers\Table\TableActionLink.cs" />
+    <Compile Include="Helpers\Table\TableColumn.cs" />
+    <Compile Include="IoC\RegisterController.cs" />
+    <Compile Include="IoC\WindsorControllerFactory.cs" />
+    <Compile Include="Models\AccountViewModels\AccountViewModelProfil.cs" />
+    <Compile Include="Models\AccountViewModels\ClientViewModel.cs" />
+    <Compile Include="Models\AccountViewModels\EmployeViewModel.cs" />
+    <Compile Include="Models\AccountViewModels\MigrationViewModel.cs" />
+    <Compile Include="Models\ArticleViewModels\ArticleViewModel.cs" />
+    <Compile Include="Models\ArticleViewModels\ArticleViewModelProfil.cs" />
+    <Compile Include="Models\CategorieViewModels\CategorieViewModel.cs" />
+    <Compile Include="Models\CategorieViewModels\CategorieViewModelProfil.cs" />
+    <Compile Include="Models\ExamenViewModels\BestClientViewModel.cs" />
+    <Compile Include="Models\ExamenViewModels\ExamenViewModel.cs" />
+    <Compile Include="Models\LogOnModel.cs" />
+    <Compile Include="Models\MessageViewModels\MessageViewModel.cs" />
+    <Compile Include="Models\MessageViewModels\MessageViewModelProfil.cs" />
+    <Compile Include="Models\PlanningViewModels\PlanningViewModel.cs" />
+    <Compile Include="Models\PlanningViewModels\SessionViewModel.cs" />
+    <Compile Include="Models\TopicViewModels\TopicViewModel.cs" />
+    <Compile Include="Models\TopicViewModels\TopicViewModelProfil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Accueil.css" />
+    <Content Include="Content\Articles.css" />
+    <Content Include="Content\calendar\jquery.weekcalendar.css" />
+    <Content Include="Content\calendar\jquery.weekcalendar.js" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\calendar\libs\css\smoothness\jquery-ui-1.8.11.custom.css" />
+    <Content Include="Content\calendar\libs\date.js" />
+    <Content Include="Content\calendar\libs\demo.js" />
+    <Content Include="Content\calendar\libs\jquery-1.4.4.min.js" />
+    <Content Include="Content\calendar\libs\jquery-ui-1.8.11.custom.min.js" />
+    <Content Include="Content\calendar\libs\jquery-ui-1.8.4.custom.min.js" />
+    <Content Include="Content\calendar\libs\jquery-ui-i18n.js" />
+    <Content Include="Content\calendar\skins\default.css" />
+    <Content Include="Content\calendar\skins\gcalendar.css" />
+    <Content Include="Content\datatable.css" />
+    <Content Include="Content\datepicker\jquery.ui.datepicker.css" />
+    <Content Include="Content\Forum.css" />
+    <Content Include="Content\forum\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\forum\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\forum\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\forum\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\forum\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\forum\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\forum\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\forum\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\forum\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\forum\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\forum\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\forum\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\forum\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\forum\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\forum\jquery-ui-1.8.13.custom.css" />
+    <Content Include="Content\jquery-ui-1.8.11.custom.css" />
+    <Content Include="Content\Register.css" />
+    <Content Include="Content\themes\base\images\Content\Forum\categorie.png" />
+    <Content Include="Content\themes\base\images\controls\dropdownlist.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\themes\base\images\DatePicker\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\images\DatePicker\jquery-ui-1.8.13.custom.css" />
+    <Content Include="Content\themes\base\images\favicon.ico" />
+    <Content Include="Content\themes\base\images\header\BackMenu.png" />
+    <Content Include="Content\themes\base\images\header\BandeHeader.png" />
+    <Content Include="Content\themes\base\images\header\Menu-separator.png" />
+    <Content Include="Content\themes\base\images\header\TitleDirection.png" />
+    <Content Include="Content\themes\base\images\header\Validate.png" />
+    <Content Include="Content\themes\base\images\Icon\checkBig.png" />
+    <Content Include="Content\themes\base\images\Icon\close.png" />
+    <Content Include="Content\themes\base\images\Icon\edit.png" />
+    <Content Include="Content\themes\base\images\Icon\plus.png" />
+    <Content Include="Content\themes\base\images\Icon\return.png" />
+    <Content Include="Content\themes\base\images\Icon\Validate.png" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Master.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\genapi.framework.js" />
+    <Content Include="Scripts\GenapiControls\Autocomplete.js" />
+    <Content Include="Scripts\GenapiControls\Button.js" />
+    <Content Include="Scripts\GenapiControls\CheckBoxList.js" />
+    <Content Include="Scripts\GenapiControls\Date.js" />
+    <Content Include="Scripts\GenapiControls\Fieldset.js" />
+    <Content Include="Scripts\GenapiControls\Global.js" />
+    <Content Include="Scripts\GenapiControls\Grid.js" />
+    <Content Include="Scripts\GenapiControls\Popup.js" />
+    <Content Include="Scripts\GenapiControls\Uppercase.js" />
+    <Content Include="Scripts\jquery-ui-1.8.10.custom.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\forum\.svn\prop-base\" />
+    <Folder Include="Content\forum\.svn\props\" />
+    <Folder Include="Content\forum\.svn\tmp\prop-base\" />
+    <Folder Include="Content\forum\.svn\tmp\props\" />
+    <Folder Include="Content\forum\.svn\tmp\text-base\" />
+    <Folder Include="Content\forum\images\.svn\props\" />
+    <Folder Include="Content\forum\images\.svn\tmp\prop-base\" />
+    <Folder Include="Content\forum\images\.svn\tmp\props\" />
+    <Folder Include="Content\forum\images\.svn\tmp\text-base\" />
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LogonPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Articles\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Client\Consulter.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Employe\Consulter.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Planning\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Client\Inscrire.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Employe\Inscrire.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Examen\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POCO\POCO.csproj">
+      <Project>{C5BF1DD1-0E57-4270-8B7E-CC5A216D9631}</Project>
+      <Name>POCO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SERVICES\SERVICES.csproj">
+      <Project>{94F37864-F0D3-4B1D-8B26-CE6F1E7FB4F2}</Project>
+      <Name>SERVICES</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\Topic.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\CreateCategoriePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\CreateMessagePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Forum\CreateTopicPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Client\CreatePopupClient.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Employe\CreatePopupEmploye.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutPopup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\forum\.svn\all-wcprops" />
+    <None Include="Content\forum\.svn\entries" />
+    <None Include="Content\forum\.svn\text-base\jquery-ui-1.8.13.custom.css.svn-base" />
+    <None Include="Content\forum\images\.svn\all-wcprops" />
+    <None Include="Content\forum\images\.svn\entries" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_diagonals-thick_18_b81900_40x40.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_diagonals-thick_20_666666_40x40.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_flat_10_000000_40x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_glass_100_f6f6f6_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_glass_100_fdf5ce_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_glass_65_ffffff_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_gloss-wave_35_f6a828_500x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_highlight-soft_100_eeeeee_1x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-bg_highlight-soft_75_ffe45c_1x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-icons_222222_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-icons_228ef1_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-icons_ef8c08_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-icons_ffd27a_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\prop-base\ui-icons_ffffff_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_diagonals-thick_18_b81900_40x40.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_diagonals-thick_20_666666_40x40.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_flat_10_000000_40x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_glass_100_f6f6f6_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_glass_100_fdf5ce_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_glass_65_ffffff_1x400.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_gloss-wave_35_f6a828_500x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_highlight-soft_100_eeeeee_1x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-bg_highlight-soft_75_ffe45c_1x100.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-icons_222222_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-icons_228ef1_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-icons_ef8c08_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-icons_ffd27a_256x240.png.svn-base" />
+    <None Include="Content\forum\images\.svn\text-base\ui-icons_ffffff_256x240.png.svn-base" />
+    <Content Include="Views\Examen\GetBestClientPartial.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18860</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

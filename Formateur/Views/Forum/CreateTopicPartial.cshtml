@@ -1,0 +1,61 @@
+﻿@model IList<Formateur.Models.CategorieViewModels.CategorieViewModel>
+
+<script type="text/javascript" language="javascript">
+
+    function ShowEditTopicPartial() {
+        $.ajax(
+         {
+             type: "POST",
+             url: '@Url.Action("EditPartial", "Forum")',
+             data: $('form').serialize(),
+             success: function (data) {
+                 if (data.toString() == "[object Object]") {
+                     $("#CreateTopic").hide();
+                     $("#CommitTopic").show();
+                 }
+                 else {
+                 }
+             }
+         });
+    }
+
+</script>
+<div id="CreateTopic">
+    <input value="" name="Edit" class="button-add" onclick="javascript:ShowEditTopicPartial()" /><label class="label-field">Créer un nouveau topic</label>
+</div>
+@using (Html.BeginForm("Index", "Forum", FormMethod.Post))
+{
+    <div id="CommitTopic" style="display: none">
+        <table>
+            <tr>
+                <td>
+                    <label class="label-field">
+                        Choisir une catégorie :</label>
+                </td>
+                <td>
+                    <div>@Html.DropDownListFor(x => x[0].Nom, new SelectList(Model.Select(m => m.Nom), Model.Select(m => m.Nom)), "--- Categorie ---")</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="label-field">
+                        Titre :</label>
+                </td>
+                <td>
+                    <div>@Html.TextBoxFor(x => x[0].TitreNewTopic, new { @class = "editor-field field-width" })</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="label-field">
+                        Message:</label>
+                </td>
+                <td>
+                    <div>@Html.TextAreaFor(x => x[0].MessageNewTopic, new { @class = "editor-textarea" })</div>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="" name="Edit" class="buttonSubmit"/></div>
+    </div>
+}

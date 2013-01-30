@@ -1,0 +1,47 @@
+﻿@model IList<Formateur.Models.ArticleViewModels.ArticleViewModel>
+@{
+    ViewBag.Title = "Actualités";
+}
+
+<head>
+<link href="@Url.Content("~/Content/Actus.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<div id="Subtitle">
+    <div id="ShadowTitle">
+        Actualités</div>
+    <div id="FrontTitle">
+        Actualités</div>
+</div>
+@using (Html.BeginForm("Detail", "Actu", FormMethod.Post))
+{
+
+
+    <div>
+        @foreach (var item in Model)
+        {
+            <div id="actu-item">
+                <table id="actu-table">
+                    <tr>
+                        <td id="actu-td-image">
+                            <img alt="Image Actualité" src="../../Content/themes/base/images/Content/Actus/ActuImageItem.jpg" />
+                        </td>
+                        <td id="actu-td-text">
+                            <a id="actu-title" href="@Url.Action("Detail", "Actu", new { id = item.Id })">
+                                @item.Titre
+                            </a>
+                            <div id="line"></div>
+                            <div id="actu-date">
+                                @item.Date
+                            </div>
+                            <div id="actu-content">
+                                @item.Contenu
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+        }
+    </div>
+}

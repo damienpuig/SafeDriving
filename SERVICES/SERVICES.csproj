@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{94F37864-F0D3-4B1D-8B26-CE6F1E7FB4F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SERVICES</RootNamespace>
+    <AssemblyName>SERVICES</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Packages\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleSvc\ArticleProfile.cs" />
+    <Compile Include="ArticleSvc\ArticleService.cs" />
+    <Compile Include="ArticleSvc\CreateArticleCommand.cs" />
+    <Compile Include="ArticleSvc\IArticleService.cs" />
+    <Compile Include="ArticleSvc\UpdateArticleCommand.cs" />
+    <Compile Include="CircuitSvc\CircuitProfile.cs" />
+    <Compile Include="CircuitSvc\CircuitService.cs" />
+    <Compile Include="CircuitSvc\CreateCircuitCommand.cs" />
+    <Compile Include="CircuitSvc\ICircuitService.cs" />
+    <Compile Include="CircuitSvc\UpdateCircuitCommand.cs" />
+    <Compile Include="Erreur.cs" />
+    <Compile Include="ExamenSvc\ClientDto.cs" />
+    <Compile Include="ExamenSvc\ExamenService.cs" />
+    <Compile Include="ExamenSvc\IExamenService.cs" />
+    <Compile Include="ForumSvc\CreateCategorieCommand.cs" />
+    <Compile Include="ForumSvc\CreateMessageCommand.cs" />
+    <Compile Include="ForumSvc\CreateTopicCommand.cs" />
+    <Compile Include="ForumSvc\ForumService.cs" />
+    <Compile Include="ForumSvc\IForumService.cs" />
+    <Compile Include="ImageSvc\IImageService.cs" />
+    <Compile Include="ImageSvc\ImageService.cs" />
+    <Compile Include="MailSvc\IMailService.cs" />
+    <Compile Include="MailSvc\MailService.cs" />
+    <Compile Include="MailSvc\SendMailCommand.cs" />
+    <Compile Include="ParcoursSvc\IParcoursService.cs" />
+    <Compile Include="ParcoursSvc\OffreReferenceDto.cs" />
+    <Compile Include="ParcoursSvc\ParcoursDto.cs" />
+    <Compile Include="ParcoursSvc\ParcoursService.cs" />
+    <Compile Include="ParcoursSvc\SessionHistoriqueDto.cs" />
+    <Compile Include="PlanningSvc\CreatePlanningCommand.cs" />
+    <Compile Include="PlanningSvc\IPlanningService.cs" />
+    <Compile Include="PlanningSvc\PlanningItemDto.cs" />
+    <Compile Include="PlanningSvc\PlanningService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resultat.cs" />
+    <Compile Include="RoleSvc\IRoleService.cs" />
+    <Compile Include="RoleSvc\RoleService.cs" />
+    <Compile Include="SessionSvc\CreateSessionCommand.cs" />
+    <Compile Include="SessionSvc\SessionDto.cs" />
+    <Compile Include="SessionSvc\SessionProfile.cs" />
+    <Compile Include="SessionSvc\SessionService.cs" />
+    <Compile Include="SessionSvc\ISessionService.cs" />
+    <Compile Include="SessionSvc\UpdateSessionCommand.cs" />
+    <Compile Include="TypeSessionSvc\CreateTypeSessionCommand.cs" />
+    <Compile Include="TypeSessionSvc\ITypeSessionService.cs" />
+    <Compile Include="TypeSessionSvc\TypeSessionProfile.cs" />
+    <Compile Include="TypeSessionSvc\TypeSessionService.cs" />
+    <Compile Include="TypeSessionSvc\UpdateTypeSessionCommand.cs" />
+    <Compile Include="UtilisateurSvc\Client\ClientNoteDto.cs" />
+    <Compile Include="UtilisateurSvc\Client\IClientService.cs" />
+    <Compile Include="UtilisateurSvc\Client\CreateClientCommand.cs" />
+    <Compile Include="UtilisateurSvc\Client\ClientProfile.cs" />
+    <Compile Include="UtilisateurSvc\Client\ClientService.cs" />
+    <Compile Include="UtilisateurSvc\Client\UpdateClientCommand.cs" />
+    <Compile Include="UtilisateurSvc\Employe\CreateClientNoteCommand.cs" />
+    <Compile Include="UtilisateurSvc\Employe\EmployeProfile.cs" />
+    <Compile Include="UtilisateurSvc\Employe\EmployeService.cs" />
+    <Compile Include="UtilisateurSvc\Employe\IEmployeService.cs" />
+    <Compile Include="UtilisateurSvc\IUtilisateurService.cs" />
+    <Compile Include="VehiculeSvc\CreateVehiculeCommand.cs" />
+    <Compile Include="VehiculeSvc\IVehiculeService.cs" />
+    <Compile Include="VehiculeSvc\VehiculeProfile.cs" />
+    <Compile Include="VehiculeSvc\VehiculeService.cs" />
+    <Compile Include="VehiculeSvc\UpdateVehiculeCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C7E6B231-68D5-4AD8-B13C-CB2DCD7807BC}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POCO\POCO.csproj">
+      <Project>{C5BF1DD1-0E57-4270-8B7E-CC5A216D9631}</Project>
+      <Name>POCO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ConnectionSvc\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

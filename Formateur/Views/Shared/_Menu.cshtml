@@ -1,0 +1,70 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div id="menu">
+        <table id="table-menu">
+            <tr>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img alt="" src="../../Content/themes/base/images/Header/HomeIcon .png" />
+                    </a>
+                </td>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Actu")">
+                        <img alt="" src="../../Content/themes/base/images/Header/ActusIcon70.png" />
+                    </a>
+                </td>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Prevention")">
+                        <img alt="" src="../../Content/themes/base/images/Header/PreventionIcon.png" />
+                    </a>
+                </td>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Forum")">
+                        <img alt="" src="../../Content/themes/base/images/Header/ForumIcon.png" />
+                    </a>
+                </td>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Account")">
+                        <img alt="" src="../../Content/themes/base/images/Header/MonCompteIcon2.png" />
+                    </a>
+                </td>
+            </tr>
+            <tr id="titleTable">
+                <td>
+                    @Html.ActionLink("Accueil", "Index", "Home")
+                </td>
+                <td>
+                    @Html.ActionLink("Actualités", "Index", "Actu")
+                </td>
+                <td>
+                    @Html.ActionLink("Prevention", "Index", "Prevention")
+                </td>
+                <td>
+                    @Html.ActionLink("Forum", "Index", "Forum")
+                </td>
+                <td>
+                    @Html.ActionLink("Mon Compte", "Index", "Account")
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <div id="menu">
+        <table>
+            <tr>
+                <td class="imageTable">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img alt="" src="../../Content/themes/base/images/Header/HomeIcon .png" />
+                    </a>
+                </td>
+            </tr>
+            <tr id="titleTable">
+                <td>
+                    @Html.ActionLink("Accueil", "Index", "Home")
+                </td>
+            </tr>
+        </table>
+    </div>
+} 
